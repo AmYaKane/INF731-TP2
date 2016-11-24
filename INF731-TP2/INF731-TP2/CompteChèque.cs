@@ -239,7 +239,16 @@ namespace INF731_TP2
             base.Afficher();
             Console.WriteLine();
         }
-        
+
+        /// <summary>
+        /// Méthode qui permet de calculer l'intérêt pour un solde
+        /// </summary>
+        /// <returns></returns>
+        public override double CalculerIntérêt()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

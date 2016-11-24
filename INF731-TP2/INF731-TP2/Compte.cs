@@ -16,7 +16,7 @@ namespace INF731_TP2
 
     #endregion
 
-    public abstract class Compte
+    public abstract class Compte : ICalculateurIntêrét
     {
         #region // Déclaration des Attributs
         public static readonly string[] TypeCompteValide = { "chèque", "épargne", "flexible" };
@@ -289,6 +289,8 @@ namespace INF731_TP2
         {
             return SoldeCompte; // To implement
         }
+
+        public abstract double CalculerIntérêt();
 
         #endregion
     }

@@ -18,6 +18,8 @@ namespace INF731_TP2
     {
         #region Déclaration des attributs
         const string CHEMIN_SORTIE = "../../";
+        const string CHEMIN = @"..\..\";
+        const char SEPARATEUR = ';';
         #endregion
 
 
@@ -35,7 +37,7 @@ namespace INF731_TP2
         private static string[] ParseCSV(string ligne)
         {
             // rajouter trim 
-            string[] tableauÉléments = ligne.Split(';');
+            string[] tableauÉléments = ligne.Split(SEPARATEUR);
             return tableauÉléments;
         }
 
@@ -44,7 +46,7 @@ namespace INF731_TP2
         * @param: string cheminFichier (Fichier de clients)
         * @retour: Une liste de clients
         */
-        public static List<Client> loadClients(String cheminFichier)
+        public static List<Client> loadClients(string cheminFichier)
         {
             string[] attributs;
             List<Client> listeClients = new List<Client>();
@@ -153,10 +155,21 @@ namespace INF731_TP2
         /**
          * 
          */
-        static void LireFichierTransaction(String cheminFichier)
+        public static List<Transaction> ChargerTransactions(string nomFichier)
         {
-            File.AppendAllText(cheminFichier, "sometext");  // Write Text and close file (similar to Console.WriteLine on the logic)
-            // TODO implement here
+            string[] attributs;
+            List<Transaction> listeTransactions = new List<Transaction>();
+
+            foreach (var Ligne in File.ReadLines(CHEMIN + nomFichier, Encoding.UTF7).Where(Ligne => Ligne != null))
+            {
+                attributs = ParseCSV(Ligne); // LireLigne(Ligne);
+                if (attributs.Length == 3)
+                    listeTransactions.Add(new TransactionNonMonétaire(attributs[0].Trim(), attributs[1].Trim(), attributs[2].Trim()));
+                else
+                    listeTransactions.Add(new TransactionMonétaire(attributs[0].Trim(), attributs[1].Trim(), attributs[2].Trim(), double.Parse(attributs[3])));
+            }
+
+            return listeTransactions;
         }
 
         /**

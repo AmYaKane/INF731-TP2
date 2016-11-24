@@ -97,6 +97,15 @@ namespace INF731_TP2
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Méthode qui permet de calculer l'intérêt du compte
+        /// </summary>
+        /// <returns></returns>
+        public override double CalculerIntérêt()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }
