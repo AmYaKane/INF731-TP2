@@ -61,11 +61,16 @@ namespace INF731_TP2
                 }
         }
 
-        public double SoldePlusBas
-        {
-            get { return soldePlusBas; }
-            set { soldePlusBas = value; }
-        }
+        public double SoldePlusBas { get; private set; }
+        //{
+        //    get
+        //    {
+        //        //soldePlusBas = this.SoldeCompte;
+        //        if (soldePlusBas < this.SoldeCompte) { soldePlusBas = this.SoldeCompte; }
+        //        return Math.Min(soldePlusBas, this.SoldeCompte) ;
+        //    }
+        //    private set;      
+        //}
 
         #endregion
 
@@ -94,6 +99,7 @@ namespace INF731_TP2
                 ModeFacturation = modeFacturation;
                 MontantMarge = montantMarge;
                 SoldeMarge = soldeMarge;
+                SoldePlusBas = SoldeCompte;
             }
             else
             {
@@ -141,17 +147,36 @@ namespace INF731_TP2
         /**
          * 
          */
-        public override bool RetirerComptoir(double retrait)
-        {
-            if (EstActif())
-            {
-                return false; // To implement
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //public override bool RetirerComptoir(double montant)
+        //{
+        //    //if (EstActif())
+        //    //{
+        //    //    return false; // To implement
+        //    //}
+        //    //else
+        //    //{
+        //    //    return false;
+        //    //}
+
+        //    if (EstActif())
+        //    {
+        //        //double frais;
+        //        if (SoldeCompte >= montant)
+        //        {
+        //            SoldeCompte -= montant;
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            // Throw new exception
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         /**
          * 
@@ -208,8 +233,8 @@ namespace INF731_TP2
         {
             if (EstActif())
             {
-                double intérêts = soldePlusBas * TAUX_INTÉRÊT_ANNUEL;
-                SoldeCompte += intérêts;
+               // double intérêts = soldePlusBas * TAUX_INTÉRÊT_ANNUEL;
+                SoldeCompte += CalculerIntérêt();
                 return true;
             }
             else
@@ -225,7 +250,7 @@ namespace INF731_TP2
         public override void Afficher()
         {
             base.Afficher();
-            Console.WriteLine(", Mode de Facturation: " + ModeFacturation + ", Montant Marge: " + MontantMarge + ", Solde Marge: " + SoldeMarge);
+            Console.WriteLine(", Mode de Facturation: " + ModeFacturation + ", Montant Marge: " + MontantMarge + ", Solde Marge: " + SoldeMarge + ", Solde Plus Bas: " + SoldePlusBas);
         }
 
         /// <summary>
@@ -234,7 +259,17 @@ namespace INF731_TP2
         /// <returns></returns>
         public override double CalculerIntérêt()
         {
-            throw new NotImplementedException();
+            return soldePlusBas * TAUX_INTÉRÊT_ANNUEL;
+        }
+
+
+        public void ModifierSolde(double nouveauSolde)
+        {          
+           
+            SoldeCompte = nouveauSolde;
+            
+            if (SoldePlusBas > SoldeCompte) { SoldePlusBas = SoldeCompte; }
+
         }
 
         #endregion

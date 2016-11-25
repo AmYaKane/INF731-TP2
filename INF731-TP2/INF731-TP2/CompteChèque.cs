@@ -107,27 +107,27 @@ namespace INF731_TP2
         * Méthode: RetirerComptoir
         * @param double montant
         */
-        public override bool RetirerComptoir(double montant)
-        {
-            if (EstActif())
-            {
-                //double frais;
-                if (SoldeCompte >= montant)
-                {
-                    SoldeCompte -= montant;
-                    return true;
-                }
-                else
-                {
-                    // Throw new exception
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //public override bool RetirerComptoir(double montant)
+        //{
+        //    if (EstActif())
+        //    {
+        //        //double frais;
+        //        if (SoldeCompte >= montant)
+        //        {
+        //            SoldeCompte -= montant;
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            // Throw new exception
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         /*
          * Méthode: RetirerGuichetAutomatique

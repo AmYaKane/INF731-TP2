@@ -123,9 +123,21 @@ namespace INF731_TP2
         /// </summary>
         /// <param name="numéroCompte"></param>
         /// <returns></returns>
-        public Compte TrouverCompte(string numéroCompte)
+        //public Compte TrouverCompte(string numéroCompte)
+        //{
+        //    return ListeDeComptes.Find(compte => compte.NuméroCompte == numéroCompte);
+
+        //}
+
+        /// <summary>
+        /// Retourne un compte à partir du numéro de client et de son numéro
+        /// </summary>
+        /// <param name="numéroClient"></param>
+        /// <param name="numéroCompte"></param>
+        /// <returns></returns>
+        public Compte TrouverCompte(string numéroClient, string numéroCompte)
         {
-            return ListeDeComptes.Find(compte => compte.NuméroCompte == numéroCompte);
+            return ListeDeComptes.Find(compte => (compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient) && compte.NuméroCompte == numéroCompte);
 
         }
         #endregion

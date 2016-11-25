@@ -24,10 +24,12 @@ namespace INF731_TP2
             //List<Transaction> transactionsEffectuées = new List<Transaction>();
             foreach (var transaction in banque.ListeTransactions)
             {
-
+                try
+                {
                 var typeTransaction = transaction.TypeTransaction;
-                Client client = banque.TrouverClient(transaction.NuméroClient);
-                Compte compte = banque.TrouverCompte(transaction.NuméroCompte);
+                //Client client = banque.TrouverClient(transaction.NuméroClient);
+                Compte compte = banque.TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte);
+                //compte.Afficher();
                 //double montant = 0;
                 double montant = 0; // (transaction as TransactionMonétaire).Montant;
                 if (transaction is TransactionMonétaire)
@@ -81,6 +83,11 @@ namespace INF731_TP2
                     default:
                         break;
 
+                }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
                 }
 
             }

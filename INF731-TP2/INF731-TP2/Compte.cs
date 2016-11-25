@@ -27,7 +27,7 @@ namespace INF731_TP2
         public const char CODE_INACTIF = 'I';
         public const double MAX_RETRAIT_GA = 500; 
 
-
+        //public string[] NuméroClients { get; private set; } 
         public string[] NuméroClients = new string[2];
         private string typeDeCompte;
         private string caractéristiqueDeCompte;
@@ -240,9 +240,28 @@ namespace INF731_TP2
        /// </summary>
        /// <param name="montant"></param>
        /// <returns></returns>
-        public virtual bool RetirerComptoir(double montant)
+        public bool RetirerComptoir(double montant)
         {
-            return false; // To implement
+            if (EstActif())
+            {
+                //double frais;
+                if (SoldeCompte >= montant)
+                {
+                    SoldeCompte -= montant;
+                    return true;
+                }
+                else
+                {
+                    // Throw new exception
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            //return false; // To implement
         }
 
         

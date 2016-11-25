@@ -28,8 +28,8 @@ namespace INF731_TP2
             Console.WriteLine();
             Console.WriteLine("Liste des comptes");
             Console.WriteLine();
-            string FichierComptes = "../../ListeDeComptes.txt";
-            //string FichierComptes = "../../fichierTestCompte.txt";
+            //string FichierComptes = "../../ListeDeComptes.txt";
+            string FichierComptes = "../../fichierTestCompte.txt";
             foreach (Compte compte in (GestionFichiers.loadComptes(FichierComptes)))
                 Tangerine.AjouterCompte(compte);
             foreach (Compte c in Tangerine.ListeDeComptes)
