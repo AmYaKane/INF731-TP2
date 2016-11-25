@@ -53,19 +53,19 @@ namespace INF731_TP2
         /**
          * 
          */
-        public override bool Déposer(double montant)
-        {
-            if (EstActif())
-            {
-                base.SoldeCompte += montant;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        //public override bool Déposer(double montant)
+        //{
+        //    if (EstActif())
+        //    {
+        //        base.SoldeCompte += montant;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
 
-        }
+        //}
 
 
         // Calcul Interets Annuel
@@ -95,6 +95,15 @@ namespace INF731_TP2
         {
             base.Afficher();
             Console.WriteLine();
+        }
+
+        /// <summary>
+        /// Méthode qui permet de calculer l'intérêt du compte
+        /// </summary>
+        /// <returns></returns>
+        public override double CalculerIntérêt()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

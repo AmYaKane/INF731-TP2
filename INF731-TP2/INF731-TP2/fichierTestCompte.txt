@@ -7,7 +7,7 @@
 
 80222-123;flexible;individuel;forfait;072;I;738,65;4400;0,0
 80622-123;flexible;individuel;forfait;062;A;738,35;7500;0,0
-80652-123;flexible;individuel;piece;003;A;708,45;7700;4,2
+80652-123;flexible;individuel;pièce;003;A;708,45;7700;4,2
 80622-193;flexible;conjoint;90622-923;forfait;002;A;738,45;4500;0,0
 90622-923;flexible;conjoint;80622-193;forfait;002;A;738,45;4500;0,0
 

@@ -18,6 +18,8 @@ namespace INF731_TP2
     {
         #region Déclaration des attributs
         const string CHEMIN_SORTIE = "../../";
+        const string CHEMIN = @"..\..\";
+        const char SEPARATEUR = ';';
         #endregion
 
 
@@ -34,10 +36,13 @@ namespace INF731_TP2
         /// <returns></returns>
         private static string[] ParseCSV(string ligne)
         {
-            // rajouter trim 
-            string[] tableauÉléments = ligne.Split(';');
+            string[] tableauÉléments = ligne.Split(SEPARATEUR);
+            for (int i = 0; i < tableauÉléments.Length; ++i)
+                tableauÉléments[i] = tableauÉléments[i].Trim();
+
             return tableauÉléments;
         }
+<<<<<<< HEAD
    
         /// <summary>
         /// Lit un fichier et génère une liste de client 
@@ -45,6 +50,15 @@ namespace INF731_TP2
         /// <param name="cheminFichier"></param>
         /// <returns></returns>
         public static List<Client> loadClients(String cheminFichier)
+=======
+
+        /**
+        * Description: Lit un fichier et génère une liste de client 
+        * @param: string cheminFichier (Fichier de clients)
+        * @retour: Une liste de clients
+        */
+        public static List<Client> loadClients(string cheminFichier)
+>>>>>>> master
         {
             string[] attributs;
             List<Client> listeClients = new List<Client>();
@@ -150,14 +164,32 @@ namespace INF731_TP2
         }
 
 
+<<<<<<< HEAD
        /// <summary>
        /// Lire le fichier de transaction
        /// </summary>
        /// <param name="cheminFichier"></param>
         static void LireFichierTransaction(String cheminFichier)
+=======
+        /**
+         * 
+         */
+        public static List<Transaction> ChargerTransactions(string nomFichier)
+>>>>>>> master
         {
-            File.AppendAllText(cheminFichier, "sometext");  // Write Text and close file (similar to Console.WriteLine on the logic)
-            // TODO implement here
+            string[] attributs;
+            List<Transaction> listeTransactions = new List<Transaction>();
+
+            foreach (var Ligne in File.ReadLines(CHEMIN + nomFichier, Encoding.UTF7).Where(Ligne => Ligne != ""))
+            {
+                attributs = ParseCSV(Ligne); // LireLigne(Ligne);
+                if (attributs.Length == 3)
+                    listeTransactions.Add(new TransactionNonMonétaire(attributs[0].Trim(), attributs[1].Trim(), attributs[2].Trim()));
+                else
+                    listeTransactions.Add(new TransactionMonétaire(attributs[0].Trim(), attributs[1].Trim(), attributs[2].Trim(), double.Parse(attributs[3])));
+            }
+
+            return listeTransactions;
         }
 
        /// <summary>
