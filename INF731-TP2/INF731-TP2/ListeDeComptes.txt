@@ -1,3 +1,24 @@
+<<<<<<< HEAD
 80622-123;chèque;conjoint;80999-654;001;A; 100
 80999-654;chèque;conjoint;80433-258;002;A;3000
 80777-714;chèque;individuel;003;A; 400
+=======
+80922-123;chèque;conjoint;80999-654;001;A;2538,45
+80999-654;chèque;conjoint;80922-123;001;A;2538,45
+80982-125;chèque;individuel;089;A;2500,100
+80982-105;chèque;individuel;009;I;1500,00
+80632-122;chèque;conjoint;89999-644;061;I;3338,20
+89999-644;chèque;conjoint;80622-122;061;I;3338,20
+
+80222-123;flexible;individuel;forfait;072;I;738,65;4400;0,0
+80622-123;flexible;individuel;forfait;062;A;738,35;7500;0,0
+80652-123;flexible;individuel;pièce;003;A;708,45;7700;4,2
+80622-193;flexible;conjoint;90622-923;forfait;002;A;738,45;4500;0,0
+90622-923;flexible;conjoint;80622-193;forfait;002;A;738,45;4500;0,0
+
+80672-223;Chèque;individuel;083;A;708,45;4756;8,0
+89672-223;Chèque;individuel;983;I;808,55;7756;88,0
+
+
+
+>>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
