@@ -235,10 +235,10 @@ namespace INF731_TP2
         * Méthode: Afficher()
         * @param 
         */
-        public override void Afficher()
+        public override string FormatterCompte()
         {
-            base.Afficher();
-            Console.WriteLine();
+           return base.FormatterCompte();
+            //Console.WriteLine();
         }
 
         /// <summary>

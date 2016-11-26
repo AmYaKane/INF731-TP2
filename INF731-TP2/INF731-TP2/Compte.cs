@@ -28,7 +28,7 @@ namespace INF731_TP2
         public const double MAX_RETRAIT_GA = 500; 
 
         //public string[] NuméroClients { get; private set; } 
-        public string[] NuméroClients = new string[2];
+        public string[] numéroClients = new string[2];
         private string typeDeCompte;
         private string caractéristiqueDeCompte;
         private string numéroCompte;
@@ -39,6 +39,7 @@ namespace INF731_TP2
 
 
         #region // Déclaration des propriétés
+        public string[] NuméroClients { get; private set; }
 
         private bool CompteFermer { get;  set; }
 
@@ -223,16 +224,25 @@ namespace INF731_TP2
            
         }
 
-        public virtual void Afficher()
+        public virtual string FormatterCompte()
         {
-            Console.Write(ToString());
+            return GestionMessages.NUMÉRO_CLIENT + NuméroClients[0] + Environment.NewLine +
+                   GestionMessages.NUMÉRO_COMPTE + NuméroCompte + Environment.NewLine +
+                   GestionMessages.STATUT_COMPTE + StatutCompte + Environment.NewLine +
+                   GestionMessages.SOLDE_COMTE + SoldeCompte;
+        }
+
+
+        public virtual string ÉcrireClient()
+        {
+            return ToString();
         }
 
         public override string ToString()
         {
             if (CaractéristiqueDeCompte == "conjoint")
             {
-                return "Numéro de compte: " + NuméroCompte + ", Numéro de Client1: " + NuméroClients[0] + ", Numéro de Client2: " + NuméroClients[1] +", Solde du compte: " + SoldeCompte;
+                return NuméroCompte + ";" + NuméroClients[0] + ", Numéro de Client2: " + NuméroClients[1] +", Solde du compte: " + SoldeCompte;
             }
             else
             {

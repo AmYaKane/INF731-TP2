@@ -51,8 +51,11 @@
     <Compile Include="CompteFlexible.cs" />
     <Compile Include="CompteÉpargne.cs" />
     <Compile Include="GestionFichiers.cs" />
+    <Compile Include="GestionMessages.cs" />
     <Compile Include="GestionTransactions.cs" />
     <Compile Include="ICalculateurIntêrét.cs" />
+    <Compile Include="IOpérateurTransaction.cs" />
+    <Compile Include="Journal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Temporaire.cs" />

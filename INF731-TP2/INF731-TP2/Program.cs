@@ -34,10 +34,7 @@ namespace INF731_TP2
                 Tangerine.AjouterCompte(compte);
             foreach (Compte c in Tangerine.ListeDeComptes)
             {
-                //c.Afficher();
-                //c.Déposer(100000);
-                //Console.WriteLine("Solde Apres le depot de 500: ");
-                c.Afficher();
+     
             }
 
             Console.WriteLine();
@@ -50,12 +47,26 @@ namespace INF731_TP2
             foreach (Transaction transaction in Tangerine.ListeTransactions)
             {
                 transaction.Afficher();
+                Tangerine.ExecuterTransaction(transaction);
+                //Tangerine.TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte).Afficher();
             }
 
+            GestionFichiers.ProduireJournalTransaction(Tangerine,FichierTransaction);
             Console.WriteLine();
             Console.WriteLine("Résultats après Transactions");
             Console.WriteLine();
-            GestionTransactions.EffectuerTransaction(Tangerine);
+
+            
+            //foreach (Client c in Tangerine.ListeDeClients)
+            //{
+            //    //c.
+            //    Console.WriteLine(Tangerine.SoldeTotal((c as ClientIndividuel).NuméroClient));
+            //    foreach (var v in Tangerine.TrouverLesComptes(c.NuméroClient))
+            //        Console.WriteLine(v.ToString());
+            //}
+            //Tangerine.ListeDeClients.FindAll(c => c.NuméroClient)
+            //Tangerine.ExecuterTransaction()
+            // GestionTransactions.EffectuerTransaction(Tangerine);
             //// Test Exception CompteTypeInvalide
             //string[] numeroclient = { "123", "123" };
             //Compte testCompte = new CompteChèque(numeroclient, "something","individuel","123456",'A',300.00);
