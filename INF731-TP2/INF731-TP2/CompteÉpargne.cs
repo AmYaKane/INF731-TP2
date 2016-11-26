@@ -67,7 +67,17 @@ namespace INF731_TP2
 
 
         #region // Déclaration des propriétés
-        public double SoldeMoyen { get; private set; }  // Doit être calculer à partir des Transactions
+        public double SoldeMoyen                // Doit être calculer à partir des Transactions
+        {
+            get { return soldeMoyen; }
+            private set
+            {
+                if (value < 0)
+                    throw new MontantNegatifException();
+                else
+                    SoldeMoyen = value;
+            }
+        }
         #endregion
 
 

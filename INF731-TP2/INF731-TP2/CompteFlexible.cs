@@ -61,7 +61,7 @@ namespace INF731_TP2
 		
         public static readonly string[] ModeFacturationValide = { FORFAIT, PIÈCE };
 
-        public const double TAUX_INTÉRÊT_ANNUEL = 0.00125;
+        public const double TAUX_INTÉRÊT_ANNUEL = 0.0125;
         public const double MARGE_CRÉDIT_MIN = 3000;
         public const double INTÉRÊT_CRÉDIT_ANNUEL = 7.95;
         public const double FRAIS_PIÉCE = 0.60;
@@ -280,6 +280,50 @@ namespace INF731_TP2
         }
 
         /// <summary>
+        /// Faire un retrait dans un guichet automatique
+        /// <transaction> RGA </transaction>
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <returns>
+        /// <return> True si le montant a été Retiré. </return>
+        /// <return> False si le montant n'a pas pu être retiré. </return> 
+        /// </returns>
+        public override bool RetirerGuichetAutomatique(double montant)
+        {
+            if (montant < 0)
+                throw new MontantNegatifException();
+
+            else if (montant % MULTIPLE_MONTANT_RGA != 0)
+                throw new MontantNotMultipleValideException();
+
+            else if (montant >= MAX_RETRAIT_GA)
+                throw new MontantRetraitLimitExceedException();
+
+            else if (Retirer(montant))
+                return true;
+
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Faire un retrait par chèque
+        /// <transaction> C </transaction>
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <returns>
+        /// <return> True si le montant a été Retiré. </return>
+        /// <return> False si le montant n'a pas pu être retiré. </return> 
+        /// </returns>
+        public override bool RetirerChèque(double montant)
+        {
+            if (Retirer(montant + FRAIS_PAR_CHÈQUE))
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
         /// Virement sur marge du compte
         /// </summary>
         /// <param name="montant"></param>
@@ -293,7 +337,7 @@ namespace INF731_TP2
             {
                 if (montant <= MargeDisponible)
                 {
-                    if (Retirer(montant))
+                    if (base.Retirer(montant))
                     {
                         SoldeMarge += montant;
                         return true;

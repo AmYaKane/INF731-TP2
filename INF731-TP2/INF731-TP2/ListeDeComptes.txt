@@ -3,6 +3,7 @@
 80777-714;chèque;individuel;003;A; 400
 
 80922-123;chèque;conjoint;80999-654;001;A;2538,45
+80922-123;chèque;conjoint;80999-654;001;A;2538,45
 80999-654;chèque;conjoint;80922-123;001;A;2538,45
 80982-125;chèque;individuel;089;A;2500,100
 80982-105;chèque;individuel;009;I;1500,00

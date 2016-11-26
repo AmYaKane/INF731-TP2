@@ -69,7 +69,10 @@ namespace INF731_TP2
             Console.WriteLine();
             string FichierClient = "ListeDeClients.txt";
             foreach (Client client in (GestionFichiers.loadClients(FichierClient)))
-                Tangerine.AjouterClient(client);
+                if (Tangerine.AjouterClient(client))
+                    Console.WriteLine("Client {0} Ajouté", client);
+                else
+                    Console.WriteLine("ERREUR: Client {0} existe déjà", client);
             foreach (Client c in Tangerine.ListeDeClients)
             {
                 c.Afficher();
@@ -79,10 +82,17 @@ namespace INF731_TP2
             Console.WriteLine("Liste des comptes");
             Console.WriteLine();
             //string FichierComptes = "../../ListeDeComptes.txt";
+<<<<<<< HEAD
             string FichierComptes = "fichierTestCompte.txt";
+=======
+            string FichierComptes = "ListeDeComptes.txt";
+>>>>>>> 058449d1c876c29fae8d17560f8b37f198e0fbd1
 
             foreach (Compte compte in (GestionFichiers.loadComptes(FichierComptes)))
-                Tangerine.AjouterCompte(compte);
+                if (Tangerine.AjouterCompte(compte))
+                    Console.WriteLine("Compte {0} Ajouté", compte);
+                else
+                    Console.WriteLine("ERREUR: Compte {0} existe déjà", compte);
             foreach (Compte c in Tangerine.ListeDeComptes)
             {
                 //c.Afficher();
@@ -91,10 +101,11 @@ namespace INF731_TP2
                // c.Afficher();
             }
 
-            Console.WriteLine();
-            Console.WriteLine("Liste des Transactions");
-            Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine("Liste des Transactions");
+            //Console.WriteLine();
 
+<<<<<<< HEAD
             string FichierTransaction = "Transactions.txt";
             foreach (Transaction transaction in (GestionFichiers.ChargerTransactions(FichierTransaction)))
                 Tangerine.AjouterTransaction(transaction);
@@ -104,6 +115,15 @@ namespace INF731_TP2
                 Tangerine.ExecuterTransaction(transaction);
                 //Tangerine.TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte).Afficher();
             }
+=======
+            //string FichierTransaction = "ListeDeTransactions.txt";
+            //foreach (Transaction transaction in (GestionFichiers.ChargerTransactions(FichierTransaction)))
+            //    Tangerine.AjouterTransaction(transaction);
+            //foreach (Transaction transaction in Tangerine.ListeTransactions)
+            //{
+            //    transaction.Afficher();
+            //}
+>>>>>>> 058449d1c876c29fae8d17560f8b37f198e0fbd1
 
             GestionFichiers.ProduireJournalTransaction(Tangerine,FichierTransaction);
             Console.WriteLine();

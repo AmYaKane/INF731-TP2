@@ -238,25 +238,25 @@ namespace INF731_TP2
         /// </summary>
         /// <param name="montant"></param>
         /// <returns></returns>
-        //public override bool RetirerChèque(double montant)
-        //{
-        //    if (EstActif())
-        //    {
-        //        if (SoldePlusBas < MINIMUM_SOLDE)
-        //            if (Retirer(montant + FRAIS_PAR_CHÈQUE))
-        //                return true;
-        //            else
-        //                return false;
-        //        else
-        //            if (Retirer(montant))
-        //                return true;
-        //            else
-        //                return false;
-        //    }
-        //    else
-        //        return false;
-        //}
-        
+        public override bool RetirerChèque(double montant)
+        {
+            if (EstActif())
+            {
+                //if (SoldePlusBas < MINIMUM_SOLDE)
+                //    if (Retirer(montant + FRAIS_PAR_CHÈQUE))
+                //        return true;
+                //    else
+                //        return false;
+                //else
+                    if (Retirer(montant))
+                        return true;
+                    else
+                        return false;
+            }
+            else
+                return false;
+        }
+
         /// <summary>
         /// Calculer l'intérêt basé sur le solde le plus bas
         /// </summary>
