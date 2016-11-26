@@ -99,7 +99,6 @@ namespace INF731_TP2
 
         #region // Déclaration des méthodes
 
-<<<<<<< HEAD
         /*
         * Méthode: Déposer
         * @param double montant
@@ -216,7 +215,7 @@ namespace INF731_TP2
         {
             if (EstActif())
             {
-                double intérêts = soldePlusBas * TAUX_INTÉRÊT_ANNUEL;
+                double intérêts = SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
                 SoldeCompte += intérêts;
                 return true;
             }
@@ -230,8 +229,8 @@ namespace INF731_TP2
          * Méthode: ToString
          * @param double montant
          */
-        public override double AfficherSolde()
-=======
+        //public override double AfficherSolde()
+        //{ }
         // To Review 
         // Logique de fin de Mois à gérer au niveau des transactions.
         /// <summary>
@@ -263,12 +262,10 @@ namespace INF731_TP2
         /// </summary>
         /// <returns> Intérêts à appliquer sur le compte. </returns>
         public override double CalculerIntérêts()
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         {
             return SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
         }
 
-<<<<<<< HEAD
         /*
         * Méthode: Afficher()
         * @param 
@@ -280,16 +277,9 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Méthode qui permet de calculer l'intérêt pour un solde
-        /// </summary>
-        /// <returns></returns>
-        public override double CalculerIntérêt()
-=======
-        /// <summary>
         /// Afficher les informations de compte
         /// </summary>
         public override void Afficher()
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         {
             throw new NotImplementedException();
         }

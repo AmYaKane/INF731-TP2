@@ -97,7 +97,6 @@ namespace INF731_TP2
 
         #region // Déclaration des Methodes
 
-<<<<<<< HEAD
         // méthode dépot montant
         /**
          * 
@@ -115,7 +114,7 @@ namespace INF731_TP2
         //    }
 
         //}
-=======
+
         /// <summary>
         /// Transaction non supporter par compte Épargne
         /// <transaction> DGA </transaction>
@@ -126,7 +125,6 @@ namespace INF731_TP2
         {
             throw new TransactionTypeDeCompteInvalideException();
         }
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
 
         /// <summary>
         /// Transaction non supporter par compte Épargne
@@ -159,7 +157,6 @@ namespace INF731_TP2
             return SoldeMoyen * TAUX_INTÉRÊT_ANNUEL;
         }
 
-<<<<<<< HEAD
         /*
         * Méthode: Afficher()
         * @param 
@@ -171,16 +168,9 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Méthode qui permet de calculer l'intérêt du compte
-        /// </summary>
-        /// <returns></returns>
-        public override double CalculerIntérêt()
-=======
-        /// <summary>
         /// Afficher les informations de compte
         /// </summary>
         public override void Afficher()
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         {
             throw new NotImplementedException();
         }

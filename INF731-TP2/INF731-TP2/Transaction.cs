@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<< HEAD
-=======
 
 /// <INF731-TP2>
 ///     <auteurs>
@@ -50,7 +48,6 @@ using System.Threading.Tasks;
 ///             <Description> </Description>
 ///         </méthode>
 ///      </méthodes>
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
 
 namespace INF731_TP2
 {
@@ -66,7 +63,6 @@ namespace INF731_TP2
             TypeTransaction = typeTransaction;
             NuméroClient = numéroClient;
             NuméroCompte = numéroCompte;
-<<<<<<< HEAD
         }
 
         public override string ToString()
@@ -74,29 +70,15 @@ namespace INF731_TP2
             return TypeTransaction + ";" + NuméroClient + ";" + NuméroCompte.ToString();
         }
 
-=======
-        }
         public virtual Transaction Clone()
         {
             return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
         }
 
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         public virtual void Afficher()
         {
             Console.Write(ToString());
         }
-<<<<<<< HEAD
 
-        public virtual Transaction Clone()
-        {
-            return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
-=======
-        
-        public override string ToString()
-        {
-            return TypeTransaction + ";" + NuméroClient + ";" + NuméroCompte.ToString();
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
-        }
     }
 }

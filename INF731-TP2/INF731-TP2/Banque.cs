@@ -95,11 +95,7 @@ namespace INF731_TP2
         #region // Déclaration des méthodes
 
         /// <summary>
-<<<<<<< HEAD
-        /// Ajouter un client dans la liste des clients
-=======
         /// Ajouter un client dans la liste des clients de la banque
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         /// </summary>
         /// <param name="client"></param>
         public void AjouterClient(Client client)
@@ -121,7 +117,6 @@ namespace INF731_TP2
         /// </summary>
         /// <param name="transaction"></param>
         public void AjouterTransaction(Transaction transaction)
-<<<<<<< HEAD
         {
             ListeTransactions.Add(transaction);
         }
@@ -138,13 +133,6 @@ namespace INF731_TP2
         //    }      
         //}
 
-
-
-=======
-        {
-            ListeTransactions.Add(transaction);
-        }
-
         /// <summary>
         /// Fermer un compte 
         /// </summary>
@@ -157,7 +145,6 @@ namespace INF731_TP2
             }
         }
 
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         /// <summary>
         /// Retourner un client en fonction de son numéro de client
         /// </summary>
@@ -172,21 +159,12 @@ namespace INF731_TP2
         /// <summary>
         /// Retourner la liste des comptes pour un client à partir de son numéro
         /// </summary>
-<<<<<<< HEAD
-        /// <param name="clientreçus"></param>
-        /// <returns></returns>
-        //public List<Compte> TrouverLesComptes(Client clientreçus)
-        //{
-        //    return ListeDeComptes.FindAll(compte => compte.NuméroClients[0] == clientreçus.NuméroClient || compte.NuméroClients[1] == clientreçus.NuméroClient).ToList();
-        //}
-=======
         /// <param name="numéroClient"></param>
         /// <returns> Retourne une liste des comptes du client</returns>
         public List<Compte> TrouverLesComptes(string numéroClient)
         {
             return ListeDeComptes.FindAll(compte => compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient).ToList(); // Naviguer la liste de client?
         }
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
 
         /// <summary>
         /// Retourne un compte à partir du numéro de client et de son numéro de compte
@@ -196,31 +174,7 @@ namespace INF731_TP2
         /// <returns> Retourne un compte </returns>
         public Compte TrouverCompte(string numéroClient, string numéroCompte)
         {
-<<<<<<< HEAD
-            return ListeDeComptes.FindAll(compte => compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient); // Naviguer la liste de client?
-        }
-      
-        /// <summary>
-        /// Retourne un compte à partir de son numéro
-        /// </summary>
-        /// <param name="numéroCompte"></param>
-        /// <returns></returns>
-        //public Compte TrouverCompte(string numéroCompte)
-        //{
-        //    return ListeDeComptes.Find(compte => compte.NuméroCompte == numéroCompte);
-
-        //}
-
-        /// <summary>
-        /// Retourne un compte à partir du numéro de client et de son numéro
-        /// </summary>
-        /// <param name="numéroClient"></param>
-        /// <param name="numéroCompte"></param>
-        /// <returns></returns>
-        public Compte TrouverCompte(string numéroClient, string numéroCompte)
-        {
-            return ListeDeComptes.Find(compte => (compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient) && compte.NuméroCompte == numéroCompte);
-
+            return ListeDeComptes.Find(compte => compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient); // Naviguer la liste de client?
         }
 
         /// <summary>
@@ -280,10 +234,7 @@ namespace INF731_TP2
         {
             return TrouverLesComptes(numéroClient).Sum(c => c.SoldeCompte);
         }
-=======
-            return ListeDeComptes.Find(compte => (compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient) && compte.NuméroCompte == numéroCompte);
-        }
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
+         
         #endregion
     }
 }

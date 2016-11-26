@@ -64,10 +64,13 @@ namespace INF731_TP2
     public static class GestionFichiers
     {
         #region Déclaration des attributs
-<<<<<<< HEAD
-        const string CHEMIN_SORTIE = "../../";
         const string CHEMIN = @"..\..\";
         const char SEPARATEUR = ';';
+        public const string CHÈQUE = "chèque";
+        public const string FLEXIBLE = "flexible";
+        public const string ÉPARGNE = "épargne";
+        public const string CONJOINT = "conjoint";
+        public const string INDIVIDUEL = "individuel";
         const string JOURNAL = "Journal - ";
         static string ligneTiret = new string('-', 70);
         static string ligneÉtoile = new string('*', 70);
@@ -84,15 +87,7 @@ namespace INF731_TP2
             { "A", "Rendre actif le compte" },
             { "S", "Obtenir le solde" }
         };
-=======
-        public const string CHEMIN = @"..\..\";
-        public const char SEPARATEUR = ';';
-        public const string CHÈQUE = "chèque";
-        public const string FLEXIBLE = "flexible";
-        public const string ÉPARGNE = "épargne";
-        public const string CONJOINT = "conjoint";
-        public const string INDIVIDUEL = "individuel";
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
+               
         #endregion
 
 
@@ -111,11 +106,7 @@ namespace INF731_TP2
         ///     <return> compte() </return>
         /// </returns>
         private static string[] ParseCSV(string ligne)
-        {
-<<<<<<< HEAD
-=======
-            // rajouter trim 
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
+        {          
             string[] tableauÉléments = ligne.Split(SEPARATEUR);
             for (int i = 0; i < tableauÉléments.Length; ++i)
                 tableauÉléments[i] = tableauÉléments[i].Trim();
@@ -206,37 +197,29 @@ namespace INF731_TP2
                     return new CompteChèque(new string[2] { "Default", "Default" }, "Default", "Default", "Default", 'E', 0);
             }
         }
-<<<<<<< HEAD
 
-        public static Object RetournerCompte(Compte compte)
-        {
-            Object value = "";
-            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(compte))
-            {
-                //string name = descriptor.Name;
-              value = descriptor.GetValue(compte);
-                //s += value; 
-                Console.Write(value);
-                Console.Write(SEPARATEUR);
-            }
-            return value;
-        }
+        // TODO implement by AYK
+        //public static Object RetournerCompte(Compte compte)
+        //{
+        //    Object value = "";
+        //    foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(compte))
+        //    {
+        //        //string name = descriptor.Name;
+        //      value = descriptor.GetValue(compte);
+        //        //s += value; 
+        //        Console.Write(value);
+        //        Console.Write(SEPARATEUR);
+        //    }
+        //    return value;
+        //}
 
-    /// <summary>
-    /// Lit un fichier et génère une liste de compte 
-    /// </summary>
-    /// <param name="cheminFichier"></param>
-    /// <returns></returns>
-    public static List<Compte> loadComptes(String cheminFichier)
-=======
-      
+   
         /// <summary>
         /// Lit un fichier et génère une liste de compte 
         /// </summary>
         /// <param name="cheminFichier"></param>
         /// <returns></returns>
         public static List<Compte> loadComptes(String cheminFichier)
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         {
             string[] attributs;
             List<Compte> listeComptes = new List<Compte>();
@@ -257,34 +240,16 @@ namespace INF731_TP2
             }
         }
 
-<<<<<<< HEAD
-
-        /// <summary>
-        /// Lire le fichier de transaction
-        /// </summary>
-        /// <param name="cheminFichier"></param>
-        public static List<Transaction> ChargerTransactions(String cheminFichier)
-=======
         /// <summary>
         /// Lit fichier transaction et charge les transactions
         /// </summary>
         /// <param name="nomFichier"></param>
         /// <returns></returns>
         public static List<Transaction> ChargerTransactions(string nomFichier)
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         {
             string[] attributs;
             List<Transaction> listeTransactions = new List<Transaction>();
 
-<<<<<<< HEAD
-            foreach (var Ligne in File.ReadLines(CHEMIN + cheminFichier, Encoding.UTF7).Where(Ligne => Ligne != ""))
-            {
-                attributs = ParseCSV(Ligne); // LireLigne(Ligne);
-                if (attributs.Length == 3)
-                    listeTransactions.Add(new TransactionNonMonétaire(attributs[0].Trim(), attributs[1].Trim(), attributs[2].Trim()));
-                else
-                    listeTransactions.Add(new TransactionMonétaire(attributs[0].Trim(), attributs[1].Trim(), attributs[2].Trim(), double.Parse(attributs[3])));
-=======
             foreach (var Ligne in File.ReadLines(CHEMIN + nomFichier, Encoding.UTF7).Where(Ligne => Ligne != ""))
             {
                 attributs = ParseCSV(Ligne); // LireLigne(Ligne);
@@ -294,37 +259,18 @@ namespace INF731_TP2
                     listeTransactions.Add(new TransactionMonétaire(attributs[0], attributs[1], attributs[2], double.Parse(attributs[3])));
                 else
                     throw new Exception(); // To implement
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
             }
 
             return listeTransactions;
         }
 
-        /// <summary>
-        /// Ecrire le journal de transaction
-        /// </summary>
-<<<<<<< HEAD
-        /// <param name="cheminFichier"></param>
-        static void ÉcrireJournalTransaction(String cheminFichier)
-=======
-        /// <param name="nomFichier"></param>
-        static void ÉcrireJournalTransaction(String nomFichier)
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
-        {
-            File.AppendAllText(CHEMIN + nomFichier, "sometext");  // Write Text and close file (similar to Console.WriteLine on the logic)
-            // TODO implement here
-        }
 
         /// <summary>
         /// Ecrire le journal de Client
         /// </summary>
-<<<<<<< HEAD
         /// <param name="cheminFichier"></param>
-        static void EcrireJournalClient(String cheminFichier)
-=======
         /// <param name="nomFichier"></param>
         static void EcrireJournalClient(String nomFichier)
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         {
             File.AppendAllText(CHEMIN + nomFichier, "sometext");  // Write Text and close file (similar to Console.WriteLine on the logic)
             // TODO implement here
@@ -333,36 +279,19 @@ namespace INF731_TP2
         /// <summary>
         /// Ecrire dans le journal de compte
         /// </summary>
-<<<<<<< HEAD
-        /// <param name="cheminFichier"></param>
-        static void EcrireJournalCompte(String cheminFichier)
-=======
+        /// <param name="cheminFichier"></param>    
         /// <param name="nomFichier"></param>
-        static void EcrireJournalCompte(String nomFichier)
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
+        static void EcrireJournalCompte(String cheminFichier)
         {
-            File.AppendAllText(CHEMIN + nomFichier, "sometext");  // Write Text and close file (similar to Console.WriteLine on the logic)
+            File.AppendAllText(CHEMIN + cheminFichier, "sometext");  // Write Text and close file (similar to Console.WriteLine on the logic)
             // TODO implement here
         }
 
-
-        //public static IEnumerable<Transaction> GetBooks()
-        //{
-        //    List<Transaction> books = new List<Transaction>(ChargerTransactions(cheminFichier));
-        //    return books;
-        //}
-        //static Dictionary<string, Compte> trouverLesComptes = new Dictionary<string, Compte>();
-        //Dictionary<string, List<Compte>> rouverLesComptes = new Dictionary<string, List<Compte>>();
-        //List<string> MyList = new List<string>();
-
-        //public MyClass()
-        //{
-        //    MyList = new List<string>() { "1" };
-        //    myD = new Dictionary<string, List<string>>()
-        //{
-        //  {"tab1", MyList }
-        //};
-        //}
+        /// <summary>
+        /// Produire le journal des transactions
+        /// </summary>
+        /// <param name="banque"></param>
+        /// <param name="cheminFichier"></param>
         public static void ProduireJournalTransaction(Banque banque, string cheminFichier)
         {
             try
@@ -402,8 +331,7 @@ namespace INF731_TP2
                     tw.WriteLine(c.NuméroClients[0] + " : " + c.NuméroCompte + " : " + c.SoldeCompte);
                     tw.WriteLine();
 
-                }
-                    
+                }                   
 
                 tw.WriteLine();
                 foreach (Compte compte in banque.ListeDeComptes)
@@ -411,20 +339,23 @@ namespace INF731_TP2
                     tw.WriteLine(compte.NuméroClients[0] + " : ");                
                     tw.Write(banque.SoldeTotal(compte.NuméroClients[0]));
                     tw.WriteLine();
-                }
-                    
+                }                    
 
                 tw.Close();               
             }
             catch
             {
-
+                // TODO implement by AYK
 
             }
 
         }
 
-
+        /// <summary>
+        /// TODO implement by AYK 
+        /// </summary>
+        /// <param name="compte"></param>
+        /// <returns></returns>
         public static string FormatterRésultatTransaction(Compte compte)
         {
             string unCompte = "";

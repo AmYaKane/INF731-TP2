@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-<<<<<<< HEAD
-=======
 /// <INF731-TP2>
 ///     <auteurs>
 ///         <auteur> Amadou Yaya Kane <email> Amadou.Yaya.Kane@USherbrooke.ca </email></auteur>
@@ -51,7 +49,6 @@ using System.Threading.Tasks;
 ///         </méthode>
 ///      </méthodes>
 
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
 namespace INF731_TP2
 {
     public class TransactionMonétaire : Transaction
@@ -64,32 +61,20 @@ namespace INF731_TP2
             Montant = montant;
         }
 
-<<<<<<< HEAD
         public override string ToString()
         {
-            return  base.ToString() + ";" + Montant.ToString();
+            return base.ToString() + ";" + Montant.ToString();
         }
-=======
+
         public override Transaction Clone()
         {
             return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
         }
 
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         public override void Afficher()
         {
             Console.WriteLine(ToString());
         }
 
-<<<<<<< HEAD
-        public override Transaction Clone()
-        {
-            return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
-=======
-        public override string ToString()
-        {
-            return base.ToString() + ";" + Montant.ToString();
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
-        }
     }
 }

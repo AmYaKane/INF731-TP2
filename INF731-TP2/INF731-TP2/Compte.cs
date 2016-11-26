@@ -80,17 +80,12 @@ namespace INF731_TP2
         public const int MULTIPLE_MONTANT_RGA = 5;
         
 
-<<<<<<< HEAD
-        //public string[] NuméroClients { get; private set; } 
-        public string[] numéroClients = new string[2];
-=======
         public static readonly string[] TypeCompteValide = { CHÈQUE, ÉPARGNE, FLEXIBLE };
         public static readonly string[] CaractéristiqueCompteValide = { INDIVIDUEL, CONJOINT };
         public static readonly char[] StatutCompteValide = { CODE_ACTIF, CODE_INACTIF };
 
         //public string[] NuméroClients { get; private set; } 
-        public string[] NuméroClients = new string[2];
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
+        public string[] numéroClients = new string[2];
         private string typeDeCompte;
         private string caractéristiqueDeCompte;
         private char statutCompte;
@@ -334,7 +329,6 @@ namespace INF731_TP2
            
         }
 
-<<<<<<< HEAD
         public virtual string FormatterCompte()
         {
             return GestionMessages.NUMÉRO_CLIENT + NuméroClients[0] + Environment.NewLine +
@@ -343,18 +337,21 @@ namespace INF731_TP2
                    GestionMessages.SOLDE_COMTE + SoldeCompte;
         }
 
-
+        /// <summary>
+        /// TODO implement by AYK
+        /// </summary>
+        /// <returns></returns>
         public virtual string ÉcrireClient()
         {
-            return ToString();
-=======
+            return ToString(); //  TODO by AYK
+        }
+
         /// <summary>
         /// Reset le solde le plus bas du compte à la valeur du Solde courant du compte.
         /// </summary>
         public void ResetSoldePlusBas()
         {
             SoldePlusBas = SoldeCompte;
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         }
 
         #endregion
@@ -375,9 +372,8 @@ namespace INF731_TP2
         {
             if (EstActif())
             {
-<<<<<<< HEAD
-                return NuméroCompte + ";" + NuméroClients[0] + ", Numéro de Client2: " + NuméroClients[1] +", Solde du compte: " + SoldeCompte;
-=======
+                //return NuméroCompte + ";" + NuméroClients[0] + ", Numéro de Client2: " + NuméroClients[1] +", Solde du compte: " + SoldeCompte;
+
                 if (montant > 0)
                 {
                     SoldeCompte += montant;
@@ -385,7 +381,6 @@ namespace INF731_TP2
                 }
                 else
                     throw new MontantNegatifException();
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
             }
             else
             {
@@ -410,13 +405,11 @@ namespace INF731_TP2
                 return false;
         }
 
-<<<<<<< HEAD
-
-       /// <summary>
-       /// Faire des retraits au comptoir
-       /// </summary>
-       /// <param name="montant"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Faire des retraits au comptoir
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <returns></returns>
         public bool RetirerComptoir(double montant)
         {
             if (EstActif())
@@ -439,7 +432,8 @@ namespace INF731_TP2
             }
 
             //return false; // To implement
-=======
+        }
+
         /// <summary>
         /// Faire des retraits au comptoir
         /// <transaction> R </transaction>
@@ -468,7 +462,6 @@ namespace INF731_TP2
             }
             else
                 return false;
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         }
 
         /// <summary>
@@ -567,7 +560,7 @@ namespace INF731_TP2
             }
         }
 
-        public abstract double CalculerIntérêt();
+        //public abstract double CalculerIntérêt();
 
         #endregion
     }

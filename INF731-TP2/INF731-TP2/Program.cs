@@ -67,7 +67,7 @@ namespace INF731_TP2
 
             Console.WriteLine("Liste des clients");
             Console.WriteLine();
-            string FichierClient = "../../ListeDeClients.txt";
+            string FichierClient = "ListeDeClients.txt";
             foreach (Client client in (GestionFichiers.loadClients(FichierClient)))
                 Tangerine.AjouterClient(client);
             foreach (Client c in Tangerine.ListeDeClients)
@@ -78,44 +78,29 @@ namespace INF731_TP2
             Console.WriteLine();
             Console.WriteLine("Liste des comptes");
             Console.WriteLine();
-<<<<<<< HEAD
             //string FichierComptes = "../../ListeDeComptes.txt";
-            string FichierComptes = "../../fichierTestCompte.txt";
-=======
+            string FichierComptes = "fichierTestCompte.txt";
 
-            //string FichierComptes = "../../ListeDeComptes.txt";
-            string FichierComptes = "../../fichierTestCompte.txt";
-
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
             foreach (Compte compte in (GestionFichiers.loadComptes(FichierComptes)))
                 Tangerine.AjouterCompte(compte);
             foreach (Compte c in Tangerine.ListeDeComptes)
             {
-<<<<<<< HEAD
-     
-=======
                 //c.Afficher();
                 //c.Déposer(100000);
                 //Console.WriteLine("Solde Apres le depot de 500: ");
-                c.Afficher();
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
+               // c.Afficher();
             }
 
             Console.WriteLine();
             Console.WriteLine("Liste des Transactions");
             Console.WriteLine();
 
-<<<<<<< HEAD
             string FichierTransaction = "Transactions.txt";
-=======
-            string FichierTransaction = "../../Transactions.txt";
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
             foreach (Transaction transaction in (GestionFichiers.ChargerTransactions(FichierTransaction)))
                 Tangerine.AjouterTransaction(transaction);
             foreach (Transaction transaction in Tangerine.ListeTransactions)
             {
                 transaction.Afficher();
-<<<<<<< HEAD
                 Tangerine.ExecuterTransaction(transaction);
                 //Tangerine.TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte).Afficher();
             }
@@ -136,14 +121,12 @@ namespace INF731_TP2
             //Tangerine.ListeDeClients.FindAll(c => c.NuméroClient)
             //Tangerine.ExecuterTransaction()
             // GestionTransactions.EffectuerTransaction(Tangerine);
-=======
-            }
+           // }
 
             Console.WriteLine();
             Console.WriteLine("Résultats après Transactions");
             Console.WriteLine();
-            GestionTransactions.EffectuerTransaction(Tangerine);
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
+            //GestionTransactions.EffectuerTransaction(Tangerine);
             //// Test Exception CompteTypeInvalide
             //string[] numeroclient = { "123", "123" };
             //Compte testCompte = new CompteChèque(numeroclient, "something","individuel","123456",'A',300.00);

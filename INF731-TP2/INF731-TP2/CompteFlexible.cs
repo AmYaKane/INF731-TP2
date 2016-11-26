@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 using System;
-=======
 ﻿using System;
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -109,7 +106,6 @@ namespace INF731_TP2
                 }
             }
         }
-<<<<<<< HEAD
 
         public double SoldePlusBas { get; private set; }
         //{
@@ -121,10 +117,7 @@ namespace INF731_TP2
         //    }
         //    private set;      
         //}
-
-=======
         
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         #endregion
 
 
@@ -151,12 +144,11 @@ namespace INF731_TP2
             {
                 ModeFacturation = modeFacturation;
                 MontantMarge = montantMarge;
-<<<<<<< HEAD
+
                 SoldeMarge = soldeMarge;
                 SoldePlusBas = SoldeCompte;
-=======
+
                 SoldeMarge = soldeMarge;                
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
             }
             else
             {
@@ -168,24 +160,6 @@ namespace INF731_TP2
 
 
         #region // Déclaration des méthodes
-
-<<<<<<< HEAD
-        /**
-         * Description: 
-         * @param montant
-         * @return 
-         */
-        public bool EstDécouvert(double montantRetrait, double montantDisponible)  // Donner a la methode un nom avec un verbe
-        {
-            if (EstActif())
-            {
-                return false; // To implement
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         /**
          * 
@@ -255,7 +229,24 @@ namespace INF731_TP2
          * 
          */
         public override bool RetirerChèque(double retrait)
-=======
+        {
+            if (EstActif())
+            {
+                //if (SoldePlusBas < MINIMUM_SOLDE)
+                //    if (Retirer(montant + FRAIS_PAR_CHÈQUE))
+                //        return true;
+                //    else
+                //        return false;
+                //else
+                if (Retirer(retrait))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
         /// <summary>
         /// Retirer un montant du solde ou de la marge du compte
         /// </summary>
@@ -264,12 +255,8 @@ namespace INF731_TP2
         /// <return> True si le montant a été retiré. </return>
         /// <return> False si le montant n'a pas été retiré. </return> 
         /// </returns>
-<<<<<<< HEAD
-        public bool EstDécouvert(double montantRetrait, double montantDisponible)
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
-=======
+        //public bool EstDécouvert(double montantRetrait, double montantDisponible)
         public override bool Retirer(double montant)
->>>>>>> e7aacde2b11931afe8117c1177e8bf0516124849
         {
             if (montant <= SoldeCompte)
             {
@@ -333,20 +320,19 @@ namespace INF731_TP2
         /// Calculer les intérêts à partir du solde le plus bas mensuel
         /// </summary>
         /// <returns></returns>
-        public override double CalculerIntérêts()
-        {
-<<<<<<< HEAD
-            if (EstActif())
-            {
-               // double intérêts = soldePlusBas * TAUX_INTÉRÊT_ANNUEL;
-                SoldeCompte += CalculerIntérêt();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //public override double CalculerIntérêts()
+        //{
+        //    if (EstActif())
+        //    {
+        //       // double intérêts = soldePlusBas * TAUX_INTÉRÊT_ANNUEL;
+        //        SoldeCompte += CalculerIntérêts();
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         /*
         * Méthode: Afficher()
@@ -364,9 +350,9 @@ namespace INF731_TP2
         /// Méthode qui permet de calculer l'intérêt du compte
         /// </summary>
         /// <returns></returns>
-        public override double CalculerIntérêt()
+        public override double CalculerIntérêts()
         {
-            return soldePlusBas * TAUX_INTÉRÊT_ANNUEL;
+            return SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
         }
 
 
@@ -377,8 +363,7 @@ namespace INF731_TP2
             
             if (SoldePlusBas > SoldeCompte) { SoldePlusBas = SoldeCompte; }
 
-=======
-            return SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
+            //return SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
         }
 
         
@@ -389,13 +374,8 @@ namespace INF731_TP2
         {
             base.Afficher();
             Console.WriteLine(", Mode de Facturation: " + ModeFacturation + ", Montant Marge: " + MontantMarge + ", Solde Marge: " + SoldeMarge + ", Solde Plus Bas: " + SoldePlusBas);
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
         }
 		
         #endregion
     }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 7e1d97f9201d5263933d2bc4d971e229e9b9f93e
