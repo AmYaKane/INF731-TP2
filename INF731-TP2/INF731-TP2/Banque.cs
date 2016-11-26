@@ -52,7 +52,6 @@ using System.Text;
 /// </INF731-TP2>
 
 #region // Déclaration des classes d'exception
-    public class TypeCompteMaxLimitException : ApplicationException { }
 #endregion
 namespace INF731_TP2
 {
@@ -123,11 +122,12 @@ namespace INF731_TP2
                 if (c.CaractéristiqueDeCompte == compte.CaractéristiqueDeCompte)
                 {
                     if (c.TypeDeCompte == compte.TypeDeCompte)
-                        throw new TypeCompteMaxLimitException();
+                        return false;
                 }
             }
-                ListeDeComptes.Add(compte);
-                return true;
+
+            ListeDeComptes.Add(compte);
+            return true;
         }
 
         /// <summary>
