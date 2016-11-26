@@ -61,6 +61,11 @@ namespace INF731_TP2
             Montant = montant;
         }
 
+        public override string ToString()
+        {
+            return base.ToString() + ";" + Montant.ToString();
+        }
+
         public override Transaction Clone()
         {
             return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
@@ -71,9 +76,5 @@ namespace INF731_TP2
             Console.WriteLine(ToString());
         }
 
-        public override string ToString()
-        {
-            return base.ToString() + ";" + Montant.ToString();
-        }
     }
 }

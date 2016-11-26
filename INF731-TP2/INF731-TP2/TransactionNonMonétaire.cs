@@ -59,6 +59,7 @@ namespace INF731_TP2
 
         }
 
+
         public override Transaction Clone()
         {
             return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
@@ -70,5 +71,6 @@ namespace INF731_TP2
             Console.WriteLine();
         }
 
+    
     }
 }

@@ -85,7 +85,7 @@ namespace INF731_TP2
         public static readonly char[] StatutCompteValide = { CODE_ACTIF, CODE_INACTIF };
 
         //public string[] NuméroClients { get; private set; } 
-        public string[] NuméroClients = new string[2];
+        public string[] numéroClients = new string[2];
         private string typeDeCompte;
         private string caractéristiqueDeCompte;
         private char statutCompte;
@@ -96,6 +96,7 @@ namespace INF731_TP2
 
 
         #region // Déclaration des propriétés
+        public string[] NuméroClients { get; private set; }
 
         private bool CompteFermer { get;  set; }
 
@@ -328,6 +329,23 @@ namespace INF731_TP2
            
         }
 
+        public virtual string FormatterCompte()
+        {
+            return GestionMessages.NUMÉRO_CLIENT + NuméroClients[0] + Environment.NewLine +
+                   GestionMessages.NUMÉRO_COMPTE + NuméroCompte + Environment.NewLine +
+                   GestionMessages.STATUT_COMPTE + StatutCompte + Environment.NewLine +
+                   GestionMessages.SOLDE_COMTE + SoldeCompte;
+        }
+
+        /// <summary>
+        /// TODO implement by AYK
+        /// </summary>
+        /// <returns></returns>
+        public virtual string ÉcrireClient()
+        {
+            return ToString(); //  TODO by AYK
+        }
+
         /// <summary>
         /// Reset le solde le plus bas du compte à la valeur du Solde courant du compte.
         /// </summary>
@@ -354,6 +372,8 @@ namespace INF731_TP2
         {
             if (EstActif())
             {
+                //return NuméroCompte + ";" + NuméroClients[0] + ", Numéro de Client2: " + NuméroClients[1] +", Solde du compte: " + SoldeCompte;
+
                 if (montant > 0)
                 {
                     SoldeCompte += montant;
@@ -383,6 +403,35 @@ namespace INF731_TP2
                 return true;
             else
                 return false;
+        }
+
+        /// <summary>
+        /// Faire des retraits au comptoir
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <returns></returns>
+        public bool RetirerComptoir(double montant)
+        {
+            if (EstActif())
+            {
+                //double frais;
+                if (SoldeCompte >= montant)
+                {
+                    SoldeCompte -= montant;
+                    return true;
+                }
+                else
+                {
+                    // Throw new exception
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            //return false; // To implement
         }
 
         /// <summary>
@@ -510,6 +559,8 @@ namespace INF731_TP2
                 return "Numéro de compte: " + NuméroCompte + ", Numéro de Client: " + NuméroClients[0] + ", Solde du compte: " + SoldeCompte;
             }
         }
+
+        //public abstract double CalculerIntérêt();
 
         #endregion
     }

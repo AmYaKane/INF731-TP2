@@ -27,6 +27,7 @@ namespace INF731_TP2
 {
     interface ICalculateurIntêrét
     {
+               
         /// <summary>
         /// Méthode pour calculer les intérêts sur le solde du compte.
         /// </summary>

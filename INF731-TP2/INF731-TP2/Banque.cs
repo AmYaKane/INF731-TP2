@@ -55,7 +55,7 @@ using System.Text;
 #endregion
 namespace INF731_TP2
 {
-    public class Banque
+    public class Banque : IOpérateurTransaction
     {
         #region // Déclaration des attributs
 
@@ -143,6 +143,18 @@ namespace INF731_TP2
         /// Fermer un compte 
         /// </summary>
         /// <param name="compte"></param>
+        //public void FermerCompte(Compte compte)
+        //{
+        //    if (!compte.EstFermer())
+        //    {
+        //        compte.FermerCompte();
+        //    }      
+        //}
+
+        /// <summary>
+        /// Fermer un compte 
+        /// </summary>
+        /// <param name="compte"></param>
         public void FermerCompte(Compte compte)
         {
             if (!compte.EstFermer())
@@ -180,8 +192,67 @@ namespace INF731_TP2
         /// <returns> Retourne un compte </returns>
         public Compte TrouverCompte(string numéroClient, string numéroCompte)
         {
-            return ListeDeComptes.Find(compte => (compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient) && compte.NuméroCompte == numéroCompte);
+            return ListeDeComptes.Find(compte => compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient); // Naviguer la liste de client?
         }
+
+        /// <summary>
+        /// Permet d'éxecuter une transaction banquaire
+        /// </summary>
+        /// <param name="transaction"></param>
+        public void ExecuterTransaction(Transaction transaction)
+        {
+            Compte compte = TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte);
+            string typeTransansaction = transaction.TypeTransaction;
+            double montant = 0; // (transaction as TransactionMonétaire).Montant;
+            if (transaction is TransactionMonétaire)
+            {
+                montant = (transaction as TransactionMonétaire).Montant;
+            }
+            switch (typeTransansaction)
+            {
+                case "D":
+                    compte.Déposer(montant);
+                    break;
+                case "DGA":
+                    compte.Déposer(montant);
+                    break;
+                case "R":
+                    compte.RetirerComptoir(montant);
+                    break;
+                case "RGA":
+                    compte.RetirerGuichetAutomatique(montant);
+                    break;
+                case "C":
+                    compte.RetirerChèque(montant);
+                    break;
+                case "VM":
+                    //compte.Afficher();
+                    break;
+                case "I":
+                    compte.RendreInactif();
+                    break;
+                case "A":
+                    compte.RendreActif();
+                    break;
+                case "S":
+                    compte.AfficherSolde();
+                   // compte.Afficher(); // Test 
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Retourner le solde global d'un client
+        /// </summary>
+        /// <param name="numéroClient"></param>
+        /// <returns></returns>
+        public double SoldeTotal(string numéroClient)
+        {
+            return TrouverLesComptes(numéroClient).Sum(c => c.SoldeCompte);
+        }
+         
         #endregion
     }
 }

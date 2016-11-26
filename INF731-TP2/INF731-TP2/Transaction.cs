@@ -64,6 +64,12 @@ namespace INF731_TP2
             NuméroClient = numéroClient;
             NuméroCompte = numéroCompte;
         }
+
+        public override string ToString()
+        {
+            return TypeTransaction + ";" + NuméroClient + ";" + NuméroCompte.ToString();
+        }
+
         public virtual Transaction Clone()
         {
             return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
@@ -73,10 +79,6 @@ namespace INF731_TP2
         {
             Console.Write(ToString());
         }
-        
-        public override string ToString()
-        {
-            return TypeTransaction + ";" + NuméroClient + ";" + NuméroCompte.ToString();
-        }
+
     }
 }
