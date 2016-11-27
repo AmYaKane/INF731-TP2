@@ -51,26 +51,50 @@ using System.Threading.Tasks;
 
 namespace INF731_TP2
 {
+    #region // Declaration des exceptions
+    #endregion
     public class TransactionNonMonétaire : Transaction
     {
+        #region // Déclaration des constructeurs
+
+        /// <summary>
+        ///     Constructeur paramétrique
+        /// </summary>
+        /// <params>
+        ///     <param name="typeTransaction"></param>
+        ///     <param name="numéroClient"></param>
+        ///     <param name="numéroCompte"></param>
+        /// </params>
+        /// <base> typeTransaction, numéroClient, numéroCompte </base>
         public TransactionNonMonétaire(string typeTransaction, string numéroClient, string numéroCompte)
              : base(typeTransaction, numéroClient, numéroCompte)
         {
 
         }
+        
+        #endregion
 
 
+        #region // Déclaration des méthodes
+
+        /// <summary>
+        ///     Clone une transaction
+        /// </summary>
+        /// <returns></returns>
         public override Transaction Clone()
         {
             return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
         }
 
+        /// <summary>
+        ///     Affiche une transaction
+        /// </summary>
         public override void Afficher()
         {
             base.Afficher();
             Console.WriteLine();
         }
 
-    
+        #endregion
     }
 }

@@ -68,7 +68,7 @@ namespace INF731_TP2
             Console.WriteLine("Liste des clients");
             Console.WriteLine();
             string FichierClient = "ListeDeClients.txt";
-            foreach (Client client in (GestionFichiers.loadClients(FichierClient)))
+            foreach (Client client in (GestionFichiers.ChargerClients(FichierClient)))
                 if (Tangerine.AjouterClient(client))
                     Console.WriteLine("Client {0} Ajouté", client);
                 else
@@ -83,7 +83,7 @@ namespace INF731_TP2
             Console.WriteLine();
            
             string FichierComptes = "ListeDeComptes.txt";
-            foreach (Compte compte in (GestionFichiers.loadComptes(FichierComptes)))
+            foreach (Compte compte in (GestionFichiers.ChargerComptes(FichierComptes)))
                 if (Tangerine.AjouterCompte(compte))
                     Console.WriteLine("Compte {0} Ajouté", compte);
                 else
@@ -94,7 +94,7 @@ namespace INF731_TP2
                 //c.Afficher();
                 //c.Déposer(100000);
                 //Console.WriteLine("Solde Apres le depot de 500: ");
-               // c.Afficher();
+                c.Afficher();
             }
 
             //Console.WriteLine();

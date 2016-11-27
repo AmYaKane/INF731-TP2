@@ -51,25 +51,39 @@ using System.Threading.Tasks;
 
 namespace INF731_TP2
 {
+    #region // Declaration des exceptions
+    #endregion
     public class Transaction
     {
+        #region // Déclaration des propriétés
+
         public string TypeTransaction { get; private set; }
         public string NuméroClient { get; private set; }
         public string NuméroCompte { get; private set; }
 
+        #endregion
 
+
+        #region // Déclaration des constructeurs
+
+        /// <summary>
+        ///     Constructeur parmétrique
+        /// </summary>
+        /// <params>
+        ///     <param name="typeTransaction"></param>
+        ///     <param name="numéroClient"></param>
+        ///     <param name="numéroCompte"></param>
+        /// </params>
         public Transaction(string typeTransaction, string numéroClient, string numéroCompte)
         {
             TypeTransaction = typeTransaction;
             NuméroClient = numéroClient;
             NuméroCompte = numéroCompte;
         }
+        #endregion
 
-        public override string ToString()
-        {
-            return TypeTransaction + ";" + NuméroClient + ";" + NuméroCompte.ToString();
-        }
 
+        #region // Déclaration des méthodes
         public virtual Transaction Clone()
         {
             return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
@@ -79,6 +93,12 @@ namespace INF731_TP2
         {
             Console.Write(ToString());
         }
+        
+        public override string ToString()
+        {
+            return TypeTransaction + ";" + NuméroClient + ";" + NuméroCompte.ToString();
+        }
 
+        #endregion
     }
 }

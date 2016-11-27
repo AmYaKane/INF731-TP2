@@ -51,30 +51,62 @@ using System.Threading.Tasks;
 
 namespace INF731_TP2
 {
+    #region // Declaration des exceptions
+    #endregion
     public class TransactionMonétaire : Transaction
     {
+        #region // Déclaration des propriétés 
         public double Montant { get; private set; }
+        #endregion
 
+
+        #region // Déclaration des constructeurs
+        /// <summary>
+        ///     Constructeur paramétrique
+        /// </summary>
+        /// <params>
+        ///     <param name="typeTransaction"></param>
+        ///     <param name="numéroClient"></param>
+        ///     <param name="numéroCompte"></param>
+        ///     <param name="montant"></param>
+        /// </params>
+        /// <base> typeTransaction, numéroClient, numéroCompte </base>
         public TransactionMonétaire(string typeTransaction, string numéroClient, string numéroCompte, double montant)
             : base(typeTransaction, numéroClient, numéroCompte)
         {
             Montant = montant;
         }
+        #endregion
 
-        public override string ToString()
-        {
-            return base.ToString() + ";" + Montant.ToString();
-        }
 
+        #region // Déclaration des méthodes
+
+        /// <summary>
+        ///     Clone une transaction
+        /// </summary>
+        /// <returns></returns>
         public override Transaction Clone()
         {
             return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
         }
 
+        /// <summary>
+        ///     Afficher une transaction
+        /// </summary>
         public override void Afficher()
         {
             Console.WriteLine(ToString());
         }
+        
+        /// <summary>
+        ///     Override ToString() pour afficher une transaction
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return base.ToString() + ";" + Montant.ToString();
+        }
 
+        #endregion
     }
 }

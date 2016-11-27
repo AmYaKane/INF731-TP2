@@ -53,8 +53,6 @@
     <Compile Include="GestionFichiers.cs" />
     <Compile Include="GestionMessages.cs" />
     <Compile Include="IOpérateurTransaction.cs" />
-    <Compile Include="Journal.cs" />
-    <Compile Include="GestionTransactions.cs" />
     <Compile Include="ICalculateurIntêrét.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

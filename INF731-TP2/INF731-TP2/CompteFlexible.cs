@@ -1,5 +1,4 @@
 using System;
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,7 +51,7 @@ using System.Text;
 namespace INF731_TP2
 {
     #region // Déclaration des classes d'exception
-    public class ModeFacturationInvalide : Exception { }
+    public class ModeFacturationInvalide : ApplicationException { }
     #endregion
 
     public class CompteFlexible : Compte
@@ -87,8 +86,9 @@ namespace INF731_TP2
         {
             get { return MontantMarge - SoldeMarge; }
         }
+
         /// <summary>
-        /// Peut contenir FORFAIT ou PIÈCE
+        ///     Peut contenir FORFAIT ou PIÈCE
         /// </summary>
         public string ModeFacturation
         {
@@ -107,48 +107,35 @@ namespace INF731_TP2
             }
         }
 
-        public double SoldePlusBas { get; private set; }
-        //{
-        //    get
-        //    {
-        //        //soldePlusBas = this.SoldeCompte;
-        //        if (soldePlusBas < this.SoldeCompte) { soldePlusBas = this.SoldeCompte; }
-        //        return Math.Min(soldePlusBas, this.SoldeCompte) ;
-        //    }
-        //    private set;      
-        //}
-        
         #endregion
 
 
         #region // Déclaration des constructeurs
 
         /// <summary>
-        /// Constructeur paramétrique
+        ///     Constructeur paramétrique
         /// </summary>
-        /// <param name="numéroClient"></param>
-        /// <param name="typeDeCompte"></param>
-        /// <param name="caracteristiqueDeCompte"></param>
-        /// <param name="numéroCompte"></param>
-        /// <param name="statutCompte"></param>
-        /// <param name="soldeCompte"></param>
-        /// <param name="modeFacturation"></param>
-        /// <param name="montantMarge"></param>
-        /// <param name="soldeMarge"></param>
-        /// <base numéroClient, typeDeCompte, caracteristiqueDeCompte, numéroCompte, statutCompte, soldeCompte></base>
+        /// <params>
+        ///     <param name="numéroClient"></param>
+        ///     <param name="typeDeCompte"></param>
+        ///     <param name="caracteristiqueDeCompte"></param>
+        ///     <param name="numéroCompte"></param>
+        ///     <param name="statutCompte"></param>
+        ///     <param name="soldeCompte"></param>
+        ///     <param name="modeFacturation"></param>
+        ///     <param name="montantMarge"></param>
+        ///     <param name="soldeMarge"></param>
+        /// </params>
+        /// <base numéroClient, typeDeCompte, caracteristiqueDeCompte, numéroCompte, statutCompte, soldeCompte ></base>
         public CompteFlexible(string[] numéroClient, string typeDeCompte, string caracteristiqueDeCompte,
                             string numéroCompte, char statutCompte, double soldeCompte, string modeFacturation, double montantMarge, double soldeMarge)
                     : base(numéroClient, typeDeCompte, caracteristiqueDeCompte, numéroCompte, statutCompte, soldeCompte)
-                {
+        {
             if (typeDeCompte == FLEXIBLE)
             {
                 ModeFacturation = modeFacturation;
                 MontantMarge = montantMarge;
-
                 SoldeMarge = soldeMarge;
-                SoldePlusBas = SoldeCompte;
-
-                SoldeMarge = soldeMarge;                
             }
             else
             {
@@ -161,71 +148,15 @@ namespace INF731_TP2
 
         #region // Déclaration des méthodes
 
-        /**
-         * 
-         */
-        public bool AjouterSolde(double soldeMarge, double decouvert)
-        {
-            if (EstActif())
-            {
-                return false; // To implement
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         /// <summary>
-        /// Retirer un montant au Guichet Automatique
-        /// </summary>
-        /// <param name="retrait"></param>
-        /// <returns></returns>
-        public override bool RetirerGuichetAutomatique(double retrait)
-        {
-            if (EstActif())
-            {
-                return false; // To implement
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Retirer un montant par Chèque
-        /// </summary>
-        /// <param name="retrait"></param>
-        /// <returns></returns>
-        public override bool RetirerChèque(double retrait)
-        {
-            if (EstActif())
-            {
-                //if (SoldePlusBas < MINIMUM_SOLDE)
-                //    if (Retirer(montant + FRAIS_PAR_CHÈQUE))
-                //        return true;
-                //    else
-                //        return false;
-                //else
-                if (Retirer(retrait))
-                    return true;
-                else
-                    return false;
-            }
-            else
-                return false;
-        }
-
-        /// <summary>
-        /// Retirer un montant du solde ou de la marge du compte
+        ///     Retirer un montant du solde ou de la marge du compte
+        ///     <transaction> R </transaction>
         /// </summary>
         /// <param name="montant"></param>
         /// <returns> 
-        /// <return> True si le montant a été retiré. </return>
-        /// <return> False si le montant n'a pas été retiré. </return> 
+        ///     <return> True si le montant a été retiré. </return>
+        ///     <return> False si le montant n'a pas été retiré. </return> 
         /// </returns>
-        //public bool EstDécouvert(double montantRetrait, double montantDisponible)
         public override bool Retirer(double montant)
         {
             if (montant <= SoldeCompte)
@@ -237,7 +168,7 @@ namespace INF731_TP2
             }
             else if (montant <= (SoldeCompte + MargeDisponible))
             {
-                if (Retirer(SoldeCompte))
+                if (base.Retirer(SoldeCompte))
                 {
                     SoldeMarge += (montant - SoldeCompte);
                     return true;
@@ -250,13 +181,13 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Faire un retrait dans un guichet automatique
-        /// <transaction> RGA </transaction>
+        ///     Faire un retrait dans un guichet automatique
+        ///     <transaction> RGA </transaction>
         /// </summary>
         /// <param name="montant"></param>
         /// <returns>
-        /// <return> True si le montant a été Retiré. </return>
-        /// <return> False si le montant n'a pas pu être retiré. </return> 
+        ///     <return> True si le montant a été Retiré. </return>
+        ///     <return> False si le montant n'a pas pu être retiré. </return> 
         /// </returns>
         public override bool RetirerGuichetAutomatique(double montant)
         {
@@ -277,13 +208,13 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Faire un retrait par chèque
-        /// <transaction> C </transaction>
+        ///     Faire un retrait par chèque
+        ///     <transaction> C </transaction>
         /// </summary>
         /// <param name="montant"></param>
         /// <returns>
-        /// <return> True si le montant a été Retiré. </return>
-        /// <return> False si le montant n'a pas pu être retiré. </return> 
+        ///     <return> True si le montant a été Retiré. </return>
+        ///     <return> False si le montant n'a pas pu être retiré. </return> 
         /// </returns>
         public override bool RetirerChèque(double montant)
         {
@@ -294,22 +225,22 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Virement sur marge du compte
+        ///     Virement / paiement de la marge de crédit du compte
         /// </summary>
         /// <param name="montant"></param>
         /// <returns>
-        /// <return> True si le montant a été viré sur la marge. </return>
-        /// <return> False si le montant n'a pas été viré sur la marge. </return>
+        ///     <return> True si le montant a été viré sur la marge. </return>
+        ///     <return> False si le montant n'a pas été viré sur la marge. </return>
         /// </returns>
-        public bool VirementMarge(double montant)
+        public override bool VirementMarge(double paiement)
         {
             if (EstActif())
             {
-                if (montant <= MargeDisponible)
+                if (paiement <= SoldeMarge)
                 {
-                    if (base.Retirer(montant))
+                    if (base.Retirer(paiement))
                     {
-                        SoldeMarge += montant;
+                        SoldeMarge -= paiement;
                         return true;
                     }
                     else
@@ -317,9 +248,9 @@ namespace INF731_TP2
                 }
                 else
                 {
-                    if (Retirer(MontantMarge - SoldeMarge))
+                    if (Retirer(SoldeMarge))
                     {
-                        SoldeMarge += (MontantMarge - SoldeMarge);
+                        SoldeMarge += (SoldeMarge);
                         return true;
                     }
                     else
@@ -333,56 +264,14 @@ namespace INF731_TP2
         /// <summary>
         /// Calculer les intérêts à partir du solde le plus bas mensuel
         /// </summary>
-        /// <returns></returns>
-        //public override double CalculerIntérêts()
-        //{
-        //    if (EstActif())
-        //    {
-        //       // double intérêts = soldePlusBas * TAUX_INTÉRÊT_ANNUEL;
-        //        SoldeCompte += CalculerIntérêts();
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-
-        /*
-        * Méthode: Afficher()
-        * @param 
-        */
-        public override string FormatterCompte()
-        {
-            return base.FormatterCompte() + Environment.NewLine +
-                   GestionMessages.MONTANT_MARGE + MontantMarge + Environment.NewLine +
-                   GestionMessages.SOLDE_MARGE + SoldeMarge;
-            //Console.WriteLine(", Mode de Facturation: " + ModeFacturation + ", Montant Marge: " + MontantMarge + ", Solde Marge: " + SoldeMarge + ", Solde Plus Bas: " + SoldePlusBas);
-        }
-
-        /// <summary>
-        /// Méthode qui permet de calculer l'intérêt du compte
-        /// </summary>
-        /// <returns></returns>
+        /// <returns> Retourne les intérêts à appliquer sur le compte. </returns>
         public override double CalculerIntérêts()
         {
             return SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
         }
-
-
-        public void ModifierSolde(double nouveauSolde)
-        {          
-           
-            SoldeCompte = nouveauSolde;
-            
-            if (SoldePlusBas > SoldeCompte) { SoldePlusBas = SoldeCompte; }
-
-            //return SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
-        }
-
-        
+                
         /// <summary>
-        /// Afficher les informations du compte
+        ///     Afficher les informations du compte
         /// </summary>
         public override void Afficher()
         {

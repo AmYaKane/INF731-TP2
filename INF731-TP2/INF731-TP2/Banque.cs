@@ -80,7 +80,7 @@ namespace INF731_TP2
         #region // Déclaration des constructeurs de class
 
         /// <summary>
-        /// Déclaration du constructeur paramétrique
+        ///     Déclaration du constructeur paramétrique
         /// </summary>
         /// <param name="nomBanque"></param>
         public Banque(string nomBanque)
@@ -97,7 +97,7 @@ namespace INF731_TP2
         #region // Déclaration des méthodes
 
         /// <summary>
-        /// Ajouter un client dans la liste des clients de la banque
+        ///     Ajouter un client dans la liste des clients de la banque
         /// </summary>
         /// <param name="client"></param>
         public bool AjouterClient(Client client)
@@ -112,7 +112,7 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Ajouter un compte dans la liste des comptes de la banque
+        ///     Ajouter un compte dans la liste des comptes de la banque
         /// </summary>
         /// <param name="compte"></param>
         public bool AjouterCompte(Compte compte)
@@ -131,7 +131,7 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Ajouter une transaction à la liste des transactions
+        ///     Ajouter une transaction à la liste des transactions
         /// </summary>
         /// <param name="transaction"></param>
         public void AjouterTransaction(Transaction transaction)
@@ -140,19 +140,7 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Fermer un compte 
-        /// </summary>
-        /// <param name="compte"></param>
-        //public void FermerCompte(Compte compte)
-        //{
-        //    if (!compte.EstFermer())
-        //    {
-        //        compte.FermerCompte();
-        //    }      
-        //}
-
-        /// <summary>
-        /// Fermer un compte 
+        ///     Fermer un compte 
         /// </summary>
         /// <param name="compte"></param>
         public void FermerCompte(Compte compte)
@@ -164,39 +152,7 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Retourner un client en fonction de son numéro de client
-        /// </summary>
-        /// <param name="numéroClient"></param>
-        /// <returns> Retourne un Client </returns>
-        public Client TrouverClient(string numéroClient)
-        {
-            return ListeDeClients.Find(client => client.NuméroClient == numéroClient);
-
-        }
-
-        /// <summary>
-        /// Retourner la liste des comptes pour un client à partir de son numéro
-        /// </summary>
-        /// <param name="numéroClient"></param>
-        /// <returns> Retourne une liste des comptes du client</returns>
-        public List<Compte> TrouverLesComptes(string numéroClient)
-        {
-            return ListeDeComptes.FindAll(compte => compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient).ToList(); // Naviguer la liste de client?
-        }
-
-        /// <summary>
-        /// Retourne un compte à partir du numéro de client et de son numéro de compte
-        /// </summary>
-        /// <param name="numéroClient"></param>
-        /// <param name="numéroCompte"></param>
-        /// <returns> Retourne un compte </returns>
-        public Compte TrouverCompte(string numéroClient, string numéroCompte)
-        {
-            return ListeDeComptes.Find(compte => compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient); // Naviguer la liste de client?
-        }
-
-        /// <summary>
-        /// Permet d'éxecuter une transaction banquaire
+        ///     Permet d'éxecuter une transaction banquaire
         /// </summary>
         /// <param name="transaction"></param>
         public void ExecuterTransaction(Transaction transaction)
@@ -214,10 +170,10 @@ namespace INF731_TP2
                     compte.Déposer(montant);
                     break;
                 case "DGA":
-                    compte.Déposer(montant);
+                    compte.DéposerGuichetAutomatique(montant);
                     break;
                 case "R":
-                    compte.RetirerComptoir(montant);
+                    compte.Retirer(montant);
                     break;
                 case "RGA":
                     compte.RetirerGuichetAutomatique(montant);
@@ -226,7 +182,7 @@ namespace INF731_TP2
                     compte.RetirerChèque(montant);
                     break;
                 case "VM":
-                    //compte.Afficher();
+                    (compte as CompteFlexible).VirementMarge(montant);
                     break;
                 case "I":
                     compte.RendreInactif();
@@ -235,8 +191,7 @@ namespace INF731_TP2
                     compte.RendreActif();
                     break;
                 case "S":
-                    compte.AfficherSolde();
-                   // compte.Afficher(); // Test 
+                    compte.AfficherSolde(); 
                     break;
                 default:
                     break;
@@ -244,7 +199,7 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Retourner le solde global d'un client
+        ///     Retourner le solde global d'un client
         /// </summary>
         /// <param name="numéroClient"></param>
         /// <returns></returns>
@@ -252,7 +207,41 @@ namespace INF731_TP2
         {
             return TrouverLesComptes(numéroClient).Sum(c => c.SoldeCompte);
         }
-         
+
+        /// <summary>
+        ///     Retourner un client en fonction de son numéro de client
+        /// </summary>
+        /// <param name="numéroClient"></param>
+        /// <returns> Retourne un Client </returns>
+        public Client TrouverClient(string numéroClient)
+        {
+            return ListeDeClients.Find(client => client.NuméroClient == numéroClient);
+
+        }
+
+        /// <summary>
+        ///     Retourner la liste des comptes pour un client à partir de son numéro
+        /// </summary>
+        /// <param name="numéroClient"></param>
+        /// <returns> Retourne une liste des comptes du client</returns>
+        public List<Compte> TrouverLesComptes(string numéroClient)
+        {
+            return ListeDeComptes.FindAll(compte => compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient).ToList(); // Naviguer la liste de client?
+        }
+
+        /// <summary>
+        ///     Retourne un compte à partir du numéro de client et de son numéro de compte
+        /// </summary>
+        /// <params>
+        ///     <param name="numéroClient"></param>
+        ///     <param name="numéroCompte"></param>
+        /// </params>
+        /// <returns> Retourne un compte </returns>
+        public Compte TrouverCompte(string numéroClient, string numéroCompte)
+        {
+            return ListeDeComptes.Find(compte => compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient); // Naviguer la liste de client?
+        }
+
         #endregion
     }
 }

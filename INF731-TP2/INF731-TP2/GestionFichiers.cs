@@ -57,8 +57,9 @@ using System.ComponentModel;
 namespace INF731_TP2
 {
     #region // Déclaration des classes d'exception
-    public class listeClientsVide : Exception { }
-    public class listeComptesVide : Exception { }
+    public class listeClientsVide : ApplicationException { }
+    public class listeComptesVide : ApplicationException { }
+    public class TransactionLenghtInvalide : ApplicationException { }
     #endregion
 
     public static class GestionFichiers
@@ -98,7 +99,7 @@ namespace INF731_TP2
         #region Déclaration des méthodes
 
         /// <summary>
-        /// Lit une ligne csv et créer un Array de string
+        ///     Lit une ligne csv et créer un Array de string
         /// </summary>
         /// <param name="ligne"></param>
         /// <returns>
@@ -116,11 +117,11 @@ namespace INF731_TP2
 
 
         /// <summary>
-        /// Lit un fichier et génère une liste de client 
+        ///     Lit un fichier et génère une liste de client 
         /// </summary>
         /// <param name="cheminFichier"></param>
         /// <returns></returns>
-        public static List<Client> loadClients(String cheminFichier)
+        public static List<Client> ChargerClients(String cheminFichier)
         {
             string[] attributs;
             List<Client> listeClients = new List<Client>();
@@ -142,7 +143,7 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Lit une ligne csv et retourne les informations d'un client 
+        ///     Lit une ligne csv et retourne les informations d'un client 
         /// </summary>
         /// <param name="tableauDesÉléments"></param>
         /// <returns></returns>
@@ -197,29 +198,13 @@ namespace INF731_TP2
                     return new CompteChèque(new string[2] { "Default", "Default" }, "Default", "Default", "Default", 'E', 0);
             }
         }
-
-        // TODO implement by AYK
-        //public static Object RetournerCompte(Compte compte)
-        //{
-        //    Object value = "";
-        //    foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(compte))
-        //    {
-        //        //string name = descriptor.Name;
-        //      value = descriptor.GetValue(compte);
-        //        //s += value; 
-        //        Console.Write(value);
-        //        Console.Write(SEPARATEUR);
-        //    }
-        //    return value;
-        //}
-
    
         /// <summary>
-        /// Lit un fichier et génère une liste de compte 
+        ///     Lit un fichier et génère une liste de compte 
         /// </summary>
         /// <param name="cheminFichier"></param>
         /// <returns></returns>
-        public static List<Compte> loadComptes(String cheminFichier)
+        public static List<Compte> ChargerComptes(String cheminFichier)
         {
             string[] attributs;
             List<Compte> listeComptes = new List<Compte>();
@@ -241,7 +226,7 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Lit fichier transaction et charge les transactions
+        ///     Lit fichier transaction et charge les transactions
         /// </summary>
         /// <param name="nomFichier"></param>
         /// <returns></returns>
@@ -252,19 +237,18 @@ namespace INF731_TP2
 
             foreach (var Ligne in File.ReadLines(CHEMIN + nomFichier, Encoding.UTF7).Where(Ligne => Ligne != ""))
             {
-                attributs = ParseCSV(Ligne); // LireLigne(Ligne);
+                attributs = ParseCSV(Ligne);
                 if (attributs.Length == 3)
                     listeTransactions.Add(new TransactionNonMonétaire(attributs[0], attributs[1], attributs[2]));
                 else if (attributs.Length == 4)
                     listeTransactions.Add(new TransactionMonétaire(attributs[0], attributs[1], attributs[2], double.Parse(attributs[3])));
                 else
-                    throw new Exception(); // To implement
+                    throw new TransactionLenghtInvalide(); 
             }
 
             return listeTransactions;
         }
-
-
+        
         /// <summary>
         /// Ecrire le journal de Client
         /// </summary>
@@ -297,7 +281,6 @@ namespace INF731_TP2
             try
             {
                 List<Transaction> list = new List<Transaction>(ChargerTransactions(cheminFichier));
-
                 StreamWriter tw = new StreamWriter(CHEMIN + JOURNAL + cheminFichier);
 
                 foreach (var s in list)
@@ -369,6 +352,7 @@ namespace INF731_TP2
 
             return unCompte;
         }
+       
         #endregion
     }
 }

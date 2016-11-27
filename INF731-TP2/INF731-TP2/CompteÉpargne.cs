@@ -86,13 +86,15 @@ namespace INF731_TP2
         /// <summary>
         /// Constructeur paramétrique
         /// </summary>
-        /// <param name="numéroClient"></param>
-        /// <param name="typeDeCompte"></param>
-        /// <param name="caracteristiqueDeCompte"></param>
-        /// <param name="numéroCompte"></param>
-        /// <param name="statutCompte"></param>
-        /// <param name="soldeCompte"></param>
-        /// <base numéroClient, typeDeCompte, caracteristiqueDeCompte, numéroCompte, statutCompte, soldeCompte></base>
+        /// <params>
+        ///     <param name="numéroClient"></param>
+        ///     <param name="typeDeCompte"></param>
+        ///     <param name="caracteristiqueDeCompte"></param>
+        ///     <param name="numéroCompte"></param>
+        ///     <param name="statutCompte"></param>
+        ///     <param name="soldeCompte"></param>
+        /// </params>
+        /// <base numéroClient, typeDeCompte, caracteristiqueDeCompte, numéroCompte, statutCompte, soldeCompte ></base>
         public CompteÉpargne(string[] numéroClient, string typeDeCompte, string caracteristiqueDeCompte, string numéroCompte, char statutCompte, double soldeCompte)
           : base(numéroClient, typeDeCompte, caracteristiqueDeCompte, numéroCompte, statutCompte, soldeCompte)
         {
@@ -107,38 +109,20 @@ namespace INF731_TP2
 
         #region // Déclaration des Methodes
 
-        // méthode dépot montant
-        /**
-         * 
-         */
-        //public override bool Déposer(double montant)
-        //{
-        //    if (EstActif())
-        //    {
-        //        base.SoldeCompte += montant;
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-
-        //}
-
         /// <summary>
-        /// Transaction non supporter par compte Épargne
-        /// <transaction> DGA </transaction>
+        ///     Transaction non supporter par compte Épargne
+        ///     <transaction> DGA </transaction>
         /// </summary>
         /// <param name="montant"></param>
         /// <returns> TransactionTypeDeCompteInvalideException </returns>
-        public override bool DéposerAuGuichetAutomatique(double montant)
+        public override bool DéposerGuichetAutomatique(double montant)
         {
             throw new TransactionTypeDeCompteInvalideException();
         }
 
         /// <summary>
-        /// Transaction non supporter par compte Épargne
-        /// <transaction> RGA </transaction>
+        ///     Transaction non supporter par compte Épargne
+        ///     <transaction> RGA </transaction>
         /// </summary>
         /// <param name="montant"></param>
         /// <returns> TransactionTypeDeCompteInvalideException </returns>
@@ -148,8 +132,8 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Transaction non supporter par compte Épargne
-        /// <transaction> C </transaction>
+        ///     Transaction non supporter par compte Épargne
+        ///     <transaction> C </transaction>
         /// </summary>
         /// <param name="montant"></param>
         /// <returns> TransactionTypeDeCompteInvalideException </returns>
@@ -157,9 +141,20 @@ namespace INF731_TP2
         {
             throw new TransactionTypeDeCompteInvalideException();
         }
+        /// <summary>
+        ///     Virement / paiement de la marge de crédit du compte
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <returns>
+        ///     <return> Retourne une Exception TransactionTypeDeCompteInvalideException </return>
+        /// </returns>
+        public override bool VirementMarge(double paiement)
+        {
+            throw new TransactionTypeDeCompteInvalideException();
+        }
 
         /// <summary>
-        /// Calculer l'intérêt basé sur le solde moyen du compte
+        ///     Calculer l'intérêt basé sur le solde moyen du compte
         /// </summary>
         /// <returns> Intérêts à appliquer sur le compte. </returns>
         public override double CalculerIntérêts()
@@ -167,22 +162,13 @@ namespace INF731_TP2
             return SoldeMoyen * TAUX_INTÉRÊT_ANNUEL;
         }
 
-        /*
-        * Méthode: Afficher()
-        * @param 
-        */
-        public override string FormatterCompte()
-        {
-            return base.FormatterCompte();
-            //Console.WriteLine();
-        }
-
         /// <summary>
-        /// Afficher les informations de compte
+        ///     Afficher les informations de compte
         /// </summary>
         public override void Afficher()
         {
-            throw new NotImplementedException();
+            base.Afficher();
+            Console.WriteLine();
         }
 
         #endregion
