@@ -397,7 +397,7 @@ namespace INF731_TP2
         /// <return> True si le montant a été déposer dans le compte. </return>
         /// <return> False si le montant n'a pas pu être déposer. </return>
         /// </returns>
-        public virtual bool DéposerAuGuichetAutomatique(double montant)
+        public virtual bool DéposerGuichetAutomatique(double montant)
         {
             if (Déposer(montant))
                 return true;

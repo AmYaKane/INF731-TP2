@@ -176,43 +176,11 @@ namespace INF731_TP2
             }
         }
 
-        /**
-         * 
-         */
-        //public override bool RetirerComptoir(double montant)
-        //{
-        //    //if (EstActif())
-        //    //{
-        //    //    return false; // To implement
-        //    //}
-        //    //else
-        //    //{
-        //    //    return false;
-        //    //}
-
-        //    if (EstActif())
-        //    {
-        //        //double frais;
-        //        if (SoldeCompte >= montant)
-        //        {
-        //            SoldeCompte -= montant;
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            // Throw new exception
-        //            return false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-
-        /**
-         * 
-         */
+        /// <summary>
+        /// Retirer un montant au Guichet Automatique
+        /// </summary>
+        /// <param name="retrait"></param>
+        /// <returns></returns>
         public override bool RetirerGuichetAutomatique(double retrait)
         {
             if (EstActif())
@@ -225,9 +193,11 @@ namespace INF731_TP2
             }
         }
 
-        /**
-         * 
-         */
+        /// <summary>
+        /// Retirer un montant par Chèque
+        /// </summary>
+        /// <param name="retrait"></param>
+        /// <returns></returns>
         public override bool RetirerChèque(double retrait)
         {
             if (EstActif())
