@@ -65,16 +65,18 @@ namespace INF731_TP2
     public static class GestionFichiers
     {
         #region Déclaration des attributs
-        const string CHEMIN = @"..\..\";
-        const char SEPARATEUR = ';';
+        public const string CHEMIN = @"..\..\";
+        public const string JOURNAL = "Journal - ";
+        public const char SEPARATEUR = ';';
+        public static string ligneTiret = new string('-', 70);
+        public static string ligneÉtoile = new string('*', 70);
+        public static string ligneExclamation = new string('!', 72);
+
         public const string CHÈQUE = "chèque";
         public const string FLEXIBLE = "flexible";
         public const string ÉPARGNE = "épargne";
         public const string CONJOINT = "conjoint";
         public const string INDIVIDUEL = "individuel";
-        const string JOURNAL = "Journal - ";
-        static string ligneTiret = new string('-', 70);
-        static string ligneÉtoile = new string('*', 70);
 
         static readonly Dictionary<string, string> transactions = new Dictionary<string, string>
         {
@@ -88,7 +90,7 @@ namespace INF731_TP2
             { "A", "Rendre actif le compte" },
             { "S", "Obtenir le solde" }
         };
-               
+
         #endregion
 
 
@@ -97,6 +99,22 @@ namespace INF731_TP2
 
 
         #region Déclaration des méthodes
+
+        /// <summary>
+        ///     Méthode qui permet de vérifier qu'un fichier existe 
+        /// </summary>
+        /// <param name="nomFichier"></param>
+        /// <returns></returns>
+        public static bool fichierExiste(string nomFichier)
+        {
+            bool fichierExiste = false;
+            if (File.Exists(CHEMIN + nomFichier))
+            {
+                fichierExiste = true;
+            }
+
+            return fichierExiste;
+        }
 
         /// <summary>
         ///     Lit une ligne csv et créer un Array de string
@@ -114,8 +132,7 @@ namespace INF731_TP2
 
             return tableauÉléments;
         }
-
-
+        
         /// <summary>
         ///     Lit un fichier et génère une liste de client 
         /// </summary>

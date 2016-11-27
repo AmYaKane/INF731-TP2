@@ -58,95 +58,164 @@ namespace INF731_TP2
 {
     class Program
     {
+        static void AfficherBienvenue()
+        {
+            Console.WriteLine(GestionFichiers.ligneÉtoile);
+            Console.WriteLine();
+            Console.WriteLine(GestionMessages.MESSAGE_BIENVENUE);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(GestionMessages.MESSAGE_INVITE);
+            Console.WriteLine();
+            Console.WriteLine(GestionFichiers.ligneÉtoile);
+            Console.WriteLine();
+        }
+        static void AfficherTitre (string text)
+        {
+            Console.WriteLine();
+            Console.WriteLine(GestionFichiers.ligneÉtoile);
+            Console.WriteLine();
+            Console.WriteLine(text);
+            Console.WriteLine();
+            Console.WriteLine(GestionFichiers.ligneÉtoile);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        static void AfficherSousTitre(string text)
+        {
+            Console.WriteLine();
+            Console.WriteLine(GestionFichiers.ligneTiret);
+            Console.WriteLine();
+            Console.WriteLine(text);
+            Console.WriteLine();
+            Console.WriteLine(GestionFichiers.ligneTiret);
+            Console.WriteLine();
+        }
+
+        static void AfficherErreur (string text)
+        {
+            Console.WriteLine();
+            Console.WriteLine(GestionFichiers.ligneExclamation);
+            Console.WriteLine();
+            Console.WriteLine(GestionMessages.FICHIER_INEXISTANT);
+            Console.WriteLine();
+            Console.WriteLine(GestionFichiers.ligneExclamation);
+            Console.WriteLine();
+            Console.WriteLine();
+        }
         static void Main(string[] args)
         {
-            // À noter que nos lectures de fichiers ne prennents pas les décimales en compte (à investiguer)
-
             // Génération de la banque avec des comptes et clients
-            Banque Tangerine = new Banque("Tangerine");
+            Banque Mandarine = new Banque("Mandarine");
 
-            Console.WriteLine("Liste des clients");
-            Console.WriteLine();
-            string FichierClient = "ListeDeClients.txt";
-            foreach (Client client in (GestionFichiers.ChargerClients(FichierClient)))
-                if (Tangerine.AjouterClient(client))
+            AfficherBienvenue();
+            
+            // -------------------------------------------
+            // Chargement de la liste des clients
+            // -------------------------------------------
+
+            AfficherTitre("Liste des clients.");
+
+            // Saisi du fichier de clients
+            Console.Write(GestionMessages.FICHIER_LISTE_CLIENT);
+            string fichierClients = Console.ReadLine();
+            if (String.IsNullOrEmpty(fichierClients))
+                Environment.Exit(0);
+
+            while ( !GestionFichiers.fichierExiste(fichierClients) )
+            {
+                // Le fichier n'existe pas, demande à l'utilisateur d'entrer un fichier valide. 
+                AfficherErreur(GestionMessages.FICHIER_INEXISTANT);
+
+                Console.Write(GestionMessages.FICHIER_LISTE_CLIENT);
+                fichierClients = Console.ReadLine();
+                if (String.IsNullOrEmpty(fichierClients))
+                    Environment.Exit(0);
+            }
+
+            AfficherSousTitre("Chargement des clients");
+            foreach (ClientIndividuel client in (GestionFichiers.ChargerClients(fichierClients)))
+            {
+                if (Mandarine.AjouterClient(client))
                     Console.WriteLine("Client {0} Ajouté", client);
                 else
+                {
+                    Console.WriteLine();
                     Console.WriteLine("ERREUR: Client {0} existe déjà", client);
-            foreach (Client c in Tangerine.ListeDeClients)
-            {
-                c.Afficher();
+                    Console.WriteLine();
+                }
             }
 
-            Console.WriteLine();
-            Console.WriteLine("Liste des comptes");
-            Console.WriteLine();
-           
-            string FichierComptes = "ListeDeComptes.txt";
-            foreach (Compte compte in (GestionFichiers.ChargerComptes(FichierComptes)))
-                if (Tangerine.AjouterCompte(compte))
-                    Console.WriteLine("Compte {0} Ajouté", compte);
+
+
+            // -------------------------------------------
+            // Chargement de la liste de comptes
+            // -------------------------------------------
+
+            AfficherTitre("Liste des comptes.");
+
+            // Saisi du fichier de comptes
+            Console.Write(GestionMessages.FICHIER_LISTE_COMPTE);
+            string fichierComptes = Console.ReadLine();
+            if (String.IsNullOrEmpty(fichierClients))
+                Environment.Exit(0);
+
+            while (!GestionFichiers.fichierExiste(fichierComptes))
+            {
+                // Le fichier n'existe pas, demande à l'utilisateur d'entrer un fichier valide.
+                AfficherErreur(GestionMessages.FICHIER_INEXISTANT);
+
+                Console.Write(GestionMessages.FICHIER_LISTE_COMPTE);
+                fichierComptes = Console.ReadLine();
+                if (String.IsNullOrEmpty(fichierClients))
+                    Environment.Exit(0);
+            }
+
+            AfficherSousTitre("Chargement des comptes");
+            foreach (Compte compte in (GestionFichiers.ChargerComptes(fichierComptes)))  // !!! swith case per TypeCompte
+                if (Mandarine.AjouterCompte(compte))
+                {
+                    Console.WriteLine("Compte {0} Ajouté", compte.NuméroCompte);
+                }
                 else
-                    Console.WriteLine("ERREUR: Compte {0} existe déjà", compte);
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("ERREUR: Le client {0}, possède déjà un compte {1} de type {2}", compte.NuméroClients[0], compte.CaractéristiqueDeCompte, compte.TypeDeCompte);
+                    Console.WriteLine();
+                }
 
-            foreach (Compte c in Tangerine.ListeDeComptes)
+
+            // -------------------------------------------
+            // Chargement de la liste de transactions
+            // -------------------------------------------
+            AfficherTitre("Liste des transactions");
+
+            // Saisi du fichier de transaction
+            Console.Write(GestionMessages.FICHIER_LISTE_TRANSACTION);
+            string fichierTransactions = Console.ReadLine();
+            
+            while (!GestionFichiers.fichierExiste(fichierTransactions))
             {
-                //c.Afficher();
-                //c.Déposer(100000);
-                //Console.WriteLine("Solde Apres le depot de 500: ");
-                c.Afficher();
+                // Le fichier n'existe pas, demande à l'utilisateur d'entrer un fichier valide.
+                AfficherErreur(GestionMessages.FICHIER_INEXISTANT);
+                
+                Console.Write(GestionMessages.FICHIER_LISTE_CLIENT);
+                fichierTransactions = Console.ReadLine();
+                if (String.IsNullOrEmpty(fichierClients))
+                    Environment.Exit(0);
             }
 
-            //Console.WriteLine();
-            //Console.WriteLine("Liste des Transactions");
-            //Console.WriteLine();
+            AfficherSousTitre("Chargement des transactions");
+            foreach (Transaction transaction in (GestionFichiers.ChargerTransactions(fichierTransactions)))
+                Mandarine.AjouterTransaction(transaction);
 
-            string FichierTransaction = "Transactions.txt";
-            foreach (Transaction transaction in (GestionFichiers.ChargerTransactions(FichierTransaction)))
-                Tangerine.AjouterTransaction(transaction);
-            foreach (Transaction transaction in Tangerine.ListeTransactions)
+            foreach (Transaction transaction in Mandarine.ListeTransactions)
             {
                 transaction.Afficher();
-                Tangerine.ExecuterTransaction(transaction);
-                //Tangerine.TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte).Afficher();
+                Mandarine.ExecuterTransaction(transaction);
             }
-            //string FichierTransaction = "ListeDeTransactions.txt";
-            //foreach (Transaction transaction in (GestionFichiers.ChargerTransactions(FichierTransaction)))
-            //    Tangerine.AjouterTransaction(transaction);
-            //foreach (Transaction transaction in Tangerine.ListeTransactions)
-            //{
-            //    transaction.Afficher();
-            //}
-
-            GestionFichiers.ProduireJournalTransaction(Tangerine,FichierTransaction);
-            Console.WriteLine();
-            Console.WriteLine("Résultats après Transactions");
-            Console.WriteLine();
-
-            
-            //foreach (Client c in Tangerine.ListeDeClients)
-            //{
-            //    //c.
-            //    Console.WriteLine(Tangerine.SoldeTotal((c as ClientIndividuel).NuméroClient));
-            //    foreach (var v in Tangerine.TrouverLesComptes(c.NuméroClient))
-            //        Console.WriteLine(v.ToString());
-            //}
-            //Tangerine.ListeDeClients.FindAll(c => c.NuméroClient)
-            //Tangerine.ExecuterTransaction()
-            // GestionTransactions.EffectuerTransaction(Tangerine);
-           // }
-
-            Console.WriteLine();
-            Console.WriteLine("Résultats après Transactions");
-            Console.WriteLine();
-            //GestionTransactions.EffectuerTransaction(Tangerine);
-            //// Test Exception CompteTypeInvalide
-            //string[] numeroclient = { "123", "123" };
-            //Compte testCompte = new CompteChèque(numeroclient, "something","individuel","123456",'A',300.00);
-
-
-            //// Test des méthodes de class
-            //CompteChèque.Retirer(200);
         }
     }
 }
