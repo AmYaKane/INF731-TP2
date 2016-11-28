@@ -53,7 +53,7 @@ namespace INF731_TP2
         public static readonly char[] StatutCompteValide = { CODE_ACTIF, CODE_INACTIF };
 
         //public string[] NuméroClients { get; private set; } 
-        public string[] NuméroClients = new string[2];
+        public string[] numéroClients = new string[2];
         private string typeDeCompte;
         private string caractéristiqueDeCompte;
         private char statutCompte;
@@ -64,7 +64,16 @@ namespace INF731_TP2
 
 
         #region // Déclaration des propriétés
+<<<<<<< HEAD
         
+=======
+        public string[] NuméroClients { get; private set; }
+
+        private bool CompteFermer { get;  set; }
+
+        public int Indice { get; private set; }     // Les classes enfants ont besoin de connaître l'indice du tableauÉléments du constructeur
+
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         public string this[int indice]
         {
             get { return NuméroClients[indice]; }
@@ -299,6 +308,23 @@ namespace INF731_TP2
            
         }
 
+        public virtual string FormatterCompte()
+        {
+            return GestionMessages.NUMÉRO_CLIENT + NuméroClients[0] + Environment.NewLine +
+                   GestionMessages.NUMÉRO_COMPTE + NuméroCompte + Environment.NewLine +
+                   GestionMessages.STATUT_COMPTE + StatutCompte + Environment.NewLine +
+                   GestionMessages.SOLDE_COMTE + SoldeCompte;
+        }
+
+        /// <summary>
+        /// TODO implement by AYK
+        /// </summary>
+        /// <returns></returns>
+        public virtual string ÉcrireClient()
+        {
+            return ToString(); //  TODO by AYK
+        }
+
         /// <summary>
         ///     Reset le solde le plus bas du compte à la valeur du Solde courant du compte.
         /// </summary>
@@ -325,6 +351,8 @@ namespace INF731_TP2
         {
             if (EstActif())
             {
+                //return NuméroCompte + ";" + NuméroClients[0] + ", Numéro de Client2: " + NuméroClients[1] +", Solde du compte: " + SoldeCompte;
+
                 if (montant > 0)
                 {
                     SoldeCompte += montant;
@@ -356,9 +384,44 @@ namespace INF731_TP2
                 return false;
         }
 
+<<<<<<< HEAD
         // <summary>
         ///     Faire des retraits au comptoir
         ///     <transaction> R </transaction>
+=======
+        /// <summary>
+        /// Faire des retraits au comptoir
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <returns></returns>
+        public bool RetirerComptoir(double montant)
+        {
+            if (EstActif())
+            {
+                //double frais;
+                if (SoldeCompte >= montant)
+                {
+                    SoldeCompte -= montant;
+                    return true;
+                }
+                else
+                {
+                    // Throw new exception
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            //return false; // To implement
+        }
+
+        /// <summary>
+        /// Faire des retraits au comptoir
+        /// <transaction> R </transaction>
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         /// </summary>
         /// <param name="montant"></param>
         /// <returns>
@@ -525,7 +588,13 @@ namespace INF731_TP2
                 return "Numéro de compte: " + NuméroCompte + ", Numéro de Client: " + NuméroClients[0] + ", Solde du compte: " + SoldeCompte;
             }
         }
+<<<<<<< HEAD
                 
+=======
+
+        //public abstract double CalculerIntérêt();
+
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         #endregion
     }
 }

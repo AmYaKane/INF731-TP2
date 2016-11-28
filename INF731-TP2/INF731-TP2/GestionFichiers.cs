@@ -30,6 +30,7 @@ namespace INF731_TP2
     public static class GestionFichiers
     {
         #region Déclaration des attributs
+<<<<<<< HEAD
         public const string CHEMIN = @"..\..\";
         public const string JOURNAL = "Journal - ";
         public const char SEPARATEUR = ';';
@@ -38,11 +39,22 @@ namespace INF731_TP2
         public static string ligneExclamation = new string('!', 72);
         public static string fichierException = "ListeDesExceptions.txt";
 
+=======
+        const string CHEMIN = @"..\..\";
+        const char SEPARATEUR = ';';
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         public const string CHÈQUE = "chèque";
         public const string FLEXIBLE = "flexible";
         public const string ÉPARGNE = "épargne";
         public const string CONJOINT = "conjoint";
         public const string INDIVIDUEL = "individuel";
+<<<<<<< HEAD
+=======
+        const string JOURNAL = "Journal - ";
+        static string ligneTiret = new string('-', 70);
+        static string ligneÉtoile = new string('*', 70);
+
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         static readonly Dictionary<string, string> transactions = new Dictionary<string, string>
         {
             { "D", "Dépot au comptoir d'un montant de : {0}" },
@@ -55,7 +67,11 @@ namespace INF731_TP2
             { "A", "Rendre actif le compte" },
             { "S", "Obtenir le solde" }
         };
+<<<<<<< HEAD
 
+=======
+               
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         #endregion
 
 
@@ -97,7 +113,12 @@ namespace INF731_TP2
 
             return tableauÉléments;
         }
+<<<<<<< HEAD
         
+=======
+
+
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         /// <summary>
         ///     Lit un fichier et génère une liste de client 
         /// </summary>
@@ -180,6 +201,25 @@ namespace INF731_TP2
                     return new CompteChèque(new string[2] { "Default", "Default" }, "Default", "Default", "Default", 'E', 0);
             }
         }
+<<<<<<< HEAD
+=======
+
+        // TODO implement by AYK
+        //public static Object RetournerCompte(Compte compte)
+        //{
+        //    Object value = "";
+        //    foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(compte))
+        //    {
+        //        //string name = descriptor.Name;
+        //      value = descriptor.GetValue(compte);
+        //        //s += value; 
+        //        Console.Write(value);
+        //        Console.Write(SEPARATEUR);
+        //    }
+        //    return value;
+        //}
+
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
    
         /// <summary>
         ///     Lit un fichier et génère une liste de compte 
@@ -231,12 +271,17 @@ namespace INF731_TP2
             return listeTransactions;
         }
 
+
         /// <summary>
         /// Ecrire le journal de Client
         /// </summary>
         /// <param name="cheminFichier"></param>
         /// <param name="nomFichier"></param>
+<<<<<<< HEAD
         static void EcrireJournalClient(Banque banque, String nomFichier)
+=======
+        static void EcrireJournalClient(String nomFichier)
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         {
             try
             {
@@ -259,6 +304,7 @@ namespace INF731_TP2
         /// </summary>
         /// <param name="cheminFichier"></param>    
         /// <param name="nomFichier"></param>
+<<<<<<< HEAD
         static void EcrireJournalCompte(Banque banque, String nomFichier)
         {
             try
@@ -285,6 +331,12 @@ namespace INF731_TP2
             {
 
             }
+=======
+        static void EcrireJournalCompte(String cheminFichier)
+        {
+            File.AppendAllText(CHEMIN + cheminFichier, "sometext");  // Write Text and close file (similar to Console.WriteLine on the logic)
+            // TODO implement here
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         }
 
         /// <summary>
@@ -292,17 +344,28 @@ namespace INF731_TP2
         /// </summary>
         /// <param name="banque"></param>
         /// <param name="cheminFichier"></param>
+<<<<<<< HEAD
         public static void ProduireJournalTransaction(Banque banque, string nomFichier)
         {
             try
             {
                 List<Transaction> list = new List<Transaction>(ChargerTransactions(nomFichier));
                 StreamWriter tw = new StreamWriter(CHEMIN + JOURNAL + nomFichier);
+=======
+        public static void ProduireJournalTransaction(Banque banque, string cheminFichier)
+        {
+            try
+            {
+                List<Transaction> list = new List<Transaction>(ChargerTransactions(cheminFichier));
+
+                StreamWriter tw = new StreamWriter(CHEMIN + JOURNAL + cheminFichier);
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
 
                 foreach (var s in list)
                 {
                     try
                     {
+<<<<<<< HEAD
                         banque.ExecuterTransaction(s);
                         tw.WriteLine(ligneTiret);
                         if (s is TransactionMonétaire)
@@ -354,6 +417,72 @@ namespace INF731_TP2
             {
                 Console.WriteLine(e);               
             }           
+=======
+                        //tw.WriteLine(s);
+                        banque.ExecuterTransaction(s);
+                        //tw.WriteLine();
+                        tw.WriteLine(ligneTiret);
+                        if (s is TransactionMonétaire)
+                            tw.WriteLine(transactions[s.TypeTransaction], (s as TransactionMonétaire).Montant);
+                        else
+                            tw.WriteLine(transactions[s.TypeTransaction]); //s."Résultat aprés transaction"
+                        tw.WriteLine(ligneTiret);
+                        tw.WriteLine();
+                        tw.WriteLine(banque.TrouverCompte(s.NuméroClient, s.NuméroCompte).FormatterCompte());
+                        tw.WriteLine();
+                    }
+                    catch
+                    {
+                        tw.WriteLine(s);
+                        tw.WriteLine("Erreur");
+                    }
+
+                }
+
+                tw.WriteLine();
+                foreach (Compte c in banque.ListeDeComptes)
+                {
+                    tw.WriteLine(c.NuméroClients[0] + " : " + c.NuméroCompte + " : " + c.SoldeCompte);
+                    tw.WriteLine();
+
+                }                   
+
+                tw.WriteLine();
+                foreach (Compte compte in banque.ListeDeComptes)
+                {
+                    tw.WriteLine(compte.NuméroClients[0] + " : ");                
+                    tw.Write(banque.SoldeTotal(compte.NuméroClients[0]));
+                    tw.WriteLine();
+                }                    
+
+                tw.Close();               
+            }
+            catch
+            {
+                // TODO implement by AYK
+
+            }
+
+        }
+
+        /// <summary>
+        /// TODO implement by AYK 
+        /// </summary>
+        /// <param name="compte"></param>
+        /// <returns></returns>
+        public static string FormatterRésultatTransaction(Compte compte)
+        {
+            string unCompte = "";
+
+            if (compte is CompteChèque)
+                unCompte = compte.ToString();
+            if (compte is CompteFlexible)
+                unCompte = compte.ToString();
+            if (compte is CompteÉpargne)
+                unCompte = compte.ToString();
+
+            return unCompte;
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         }
 
        /// <summary>

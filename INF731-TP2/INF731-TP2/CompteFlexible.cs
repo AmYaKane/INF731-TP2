@@ -1,4 +1,8 @@
 using System;
+<<<<<<< HEAD
+=======
+﻿using System;
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -73,6 +77,20 @@ namespace INF731_TP2
             }
         }
 
+<<<<<<< HEAD
+=======
+        public double SoldePlusBas { get; private set; }
+        //{
+        //    get
+        //    {
+        //        //soldePlusBas = this.SoldeCompte;
+        //        if (soldePlusBas < this.SoldeCompte) { soldePlusBas = this.SoldeCompte; }
+        //        return Math.Min(soldePlusBas, this.SoldeCompte) ;
+        //    }
+        //    private set;      
+        //}
+        
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         #endregion
 
 
@@ -101,7 +119,15 @@ namespace INF731_TP2
             {
                 ModeFacturation = modeFacturation;
                 MontantMarge = montantMarge;
+<<<<<<< HEAD
                 SoldeMarge = soldeMarge;
+=======
+
+                SoldeMarge = soldeMarge;
+                SoldePlusBas = SoldeCompte;
+
+                SoldeMarge = soldeMarge;                
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
             }
             else
             {
@@ -114,6 +140,92 @@ namespace INF731_TP2
 
         #region // Déclaration des méthodes
 
+        /**
+         * 
+         */
+        public bool AjouterSolde(double soldeMarge, double decouvert)
+        {
+            if (EstActif())
+            {
+                return false; // To implement
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /**
+         * 
+         */
+        //public override bool RetirerComptoir(double montant)
+        //{
+        //    //if (EstActif())
+        //    //{
+        //    //    return false; // To implement
+        //    //}
+        //    //else
+        //    //{
+        //    //    return false;
+        //    //}
+
+        //    if (EstActif())
+        //    {
+        //        //double frais;
+        //        if (SoldeCompte >= montant)
+        //        {
+        //            SoldeCompte -= montant;
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            // Throw new exception
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        /**
+         * 
+         */
+        public override bool RetirerGuichetAutomatique(double retrait)
+        {
+            if (EstActif())
+            {
+                return false; // To implement
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /**
+         * 
+         */
+        public override bool RetirerChèque(double retrait)
+        {
+            if (EstActif())
+            {
+                //if (SoldePlusBas < MINIMUM_SOLDE)
+                //    if (Retirer(montant + FRAIS_PAR_CHÈQUE))
+                //        return true;
+                //    else
+                //        return false;
+                //else
+                if (Retirer(retrait))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
         /// <summary>
         ///     Retirer un montant du solde ou de la marge du compte
         ///     <transaction> R </transaction>
@@ -123,6 +235,7 @@ namespace INF731_TP2
         ///     <return> True si le montant a été retiré. </return>
         ///     <return> False si le montant n'a pas été retiré. </return> 
         /// </returns>
+        //public bool EstDécouvert(double montantRetrait, double montantDisponible)
         public override bool Retirer(double montant)
         {
             if (montant <= SoldeCompte)
@@ -230,12 +343,62 @@ namespace INF731_TP2
         /// <summary>
         /// Calculer les intérêts à partir du solde le plus bas mensuel
         /// </summary>
+<<<<<<< HEAD
         /// <returns> Retourne les intérêts à appliquer sur le compte. </returns>
+=======
+        /// <returns></returns>
+        //public override double CalculerIntérêts()
+        //{
+        //    if (EstActif())
+        //    {
+        //       // double intérêts = soldePlusBas * TAUX_INTÉRÊT_ANNUEL;
+        //        SoldeCompte += CalculerIntérêts();
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        /*
+        * Méthode: Afficher()
+        * @param 
+        */
+        public override string FormatterCompte()
+        {
+            return base.FormatterCompte() + Environment.NewLine +
+                   GestionMessages.MONTANT_MARGE + MontantMarge + Environment.NewLine +
+                   GestionMessages.SOLDE_MARGE + SoldeMarge;
+            //Console.WriteLine(", Mode de Facturation: " + ModeFacturation + ", Montant Marge: " + MontantMarge + ", Solde Marge: " + SoldeMarge + ", Solde Plus Bas: " + SoldePlusBas);
+        }
+
+        /// <summary>
+        /// Méthode qui permet de calculer l'intérêt du compte
+        /// </summary>
+        /// <returns></returns>
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         public override double CalculerIntérêts()
         {
             return SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
         }
+<<<<<<< HEAD
                 
+=======
+
+
+        public void ModifierSolde(double nouveauSolde)
+        {          
+           
+            SoldeCompte = nouveauSolde;
+            
+            if (SoldePlusBas > SoldeCompte) { SoldePlusBas = SoldeCompte; }
+
+            //return SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
+        }
+
+        
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         /// <summary>
         ///     Afficher les informations du compte
         /// </summary>

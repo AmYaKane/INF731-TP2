@@ -53,6 +53,11 @@
     <Compile Include="GestionFichiers.cs" />
     <Compile Include="GestionMessages.cs" />
     <Compile Include="IOpérateurTransaction.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="Journal.cs" />
+    <Compile Include="GestionTransactions.cs" />
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
     <Compile Include="ICalculateurIntêrét.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

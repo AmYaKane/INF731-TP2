@@ -75,6 +75,24 @@ namespace INF731_TP2
 
         #region // Déclaration des Methodes
 
+        // méthode dépot montant
+        /**
+         * 
+         */
+        //public override bool Déposer(double montant)
+        //{
+        //    if (EstActif())
+        //    {
+        //        base.SoldeCompte += montant;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+
+        //}
+
         /// <summary>
         ///     Transaction non supporter par compte Épargne
         ///     <transaction> DGA </transaction>
@@ -128,13 +146,22 @@ namespace INF731_TP2
             return SoldeMoyen * TAUX_INTÉRÊT_ANNUEL;
         }
 
+        /*
+        * Méthode: Afficher()
+        * @param 
+        */
+        public override string FormatterCompte()
+        {
+            return base.FormatterCompte();
+            //Console.WriteLine();
+        }
+
         /// <summary>
         ///     Afficher les informations de compte
         /// </summary>
         public override void Afficher()
         {
-            base.Afficher();
-            Console.WriteLine();
+            throw new NotImplementedException();
         }
 
         /// <summary>

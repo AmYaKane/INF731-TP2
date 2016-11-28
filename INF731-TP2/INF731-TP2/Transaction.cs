@@ -62,10 +62,19 @@ namespace INF731_TP2
             NuméroClient = numéroClient;
             NuméroCompte = numéroCompte;
         }
+<<<<<<< HEAD
         #endregion
 
 
         #region // Déclaration des méthodes
+=======
+
+        public override string ToString()
+        {
+            return TypeTransaction + ";" + NuméroClient + ";" + NuméroCompte.ToString();
+        }
+
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         public virtual Transaction Clone()
         {
             return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
@@ -75,6 +84,7 @@ namespace INF731_TP2
         {
             Console.Write(ToString());
         }
+<<<<<<< HEAD
         
         public override string ToString()
         {
@@ -82,5 +92,8 @@ namespace INF731_TP2
         }
 
         #endregion
+=======
+
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
     }
 }

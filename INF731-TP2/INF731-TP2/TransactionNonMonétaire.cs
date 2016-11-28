@@ -44,10 +44,14 @@ namespace INF731_TP2
 
         #region // Déclaration des méthodes
 
+<<<<<<< HEAD
         /// <summary>
         ///     Clone une transaction
         /// </summary>
         /// <returns></returns>
+=======
+
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         public override Transaction Clone()
         {
             return new Transaction(this.TypeTransaction, this.NuméroClient, this.NuméroCompte);
@@ -62,6 +66,10 @@ namespace INF731_TP2
             Console.WriteLine();
         }
 
+<<<<<<< HEAD
         #endregion
+=======
+    
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
     }
 }

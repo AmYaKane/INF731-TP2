@@ -1,6 +1,10 @@
 80622-123;chèque;conjoint;80999-654;001;A; 100
+<<<<<<< HEAD
 80999-654;chèque;conjoint;80433-258;001;A;3000
 80777-714;chèque;individuel;003;A; 400
+=======
+80999-654;chèque;conjoint;80433-258;002;A;3000
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
 80777-714;chèque;individuel;003;A; 400
 
 80922-123;chèque;conjoint;80999-654;001;A;2538,45

@@ -66,8 +66,145 @@ namespace INF731_TP2
 
         #region // Déclaration des méthodes
 
+<<<<<<< HEAD
         //  To Review 
         //  Logique de fin de Mois à gérer au niveau des transactions.
+=======
+        /*
+        * Méthode: Déposer
+        * @param double montant
+        */
+        public override bool Déposer(double montant)
+        {
+            if (EstActif())
+            {
+                base.SoldeCompte += montant;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /*
+        * Méthode: RetirerComptoir
+        * @param double montant
+        */
+        //public override bool RetirerComptoir(double montant)
+        //{
+        //    if (EstActif())
+        //    {
+        //        //double frais;
+        //        if (SoldeCompte >= montant)
+        //        {
+        //            SoldeCompte -= montant;
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            // Throw new exception
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        /*
+         * Méthode: RetirerGuichetAutomatique
+         * @param double montant
+         */
+        public override bool RetirerGuichetAutomatique(double montant)
+        {
+            if (EstActif())
+            {
+                //double frais;
+                if (montant <= MAX_RETRAIT_GA)
+                {
+                    if (SoldeCompte >= montant)
+                    {
+                        SoldeCompte -= montant;
+                        return true;
+                    }
+                    else
+                    {
+                        // Throw new exception
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /*
+         * Méthode: RetirerChèque
+         * @param double montant
+         */
+        public override bool RetirerChèque(double montant)
+        {
+            if (EstActif())
+            {
+                //double frais;
+                if (SoldeCompte >= montant)
+                {
+                    if (SoldeCompte < MINIMUM_SOLDE)
+                    {
+                        montant += FRAIS_PAR_CHÈQUE;
+                    }
+
+                    SoldeCompte -= montant;
+                    return true;
+                }
+                else
+                {
+                    // Throw new exception
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+            
+        /*
+         * Méthode: AjouterIntérêtsAnnuel
+         * @param 
+         */
+
+        public bool AjouterIntérêtl()
+        {
+            if (EstActif())
+            {
+                double intérêts = SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
+                SoldeCompte += intérêts;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /*
+         * Méthode: ToString
+         * @param double montant
+         */
+        //public override double AfficherSolde()
+        //{ }
+        // To Review 
+        // Logique de fin de Mois à gérer au niveau des transactions.
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
         /// <summary>
         ///     Retirer un montant par Chèque
         /// </summary>
@@ -113,13 +250,22 @@ namespace INF731_TP2
             return SoldePlusBas * TAUX_INTÉRÊT_ANNUEL;
         }
 
+        /*
+        * Méthode: Afficher()
+        * @param 
+        */
+        public override string FormatterCompte()
+        {
+           return base.FormatterCompte();
+            //Console.WriteLine();
+        }
+
         /// <summary>
         /// Afficher les informations de compte
         /// </summary>
         public override void Afficher()
         {
-            base.Afficher();
-            Console.WriteLine();
+            throw new NotImplementedException();
         }
 
         /// <summary>

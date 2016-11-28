@@ -112,6 +112,18 @@ namespace INF731_TP2
         ///     Fermer un compte 
         /// </summary>
         /// <param name="compte"></param>
+        //public void FermerCompte(Compte compte)
+        //{
+        //    if (!compte.EstFermer())
+        //    {
+        //        compte.FermerCompte();
+        //    }      
+        //}
+
+        /// <summary>
+        /// Fermer un compte 
+        /// </summary>
+        /// <param name="compte"></param>
         public void FermerCompte(Compte compte)
         {
             if (!compte.EstFermer())
@@ -221,6 +233,7 @@ namespace INF731_TP2
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// Valider quelques paramètres de transactions
         /// </summary>
         /// <param name="transaction"></param>
@@ -234,7 +247,65 @@ namespace INF731_TP2
                 throw new Exception();
             if (!listetypeTransaction.Contains(transaction.TypeTransaction))
                 throw new Exception();
+=======
+        /// Permet d'éxecuter une transaction banquaire
+        /// </summary>
+        /// <param name="transaction"></param>
+        public void ExecuterTransaction(Transaction transaction)
+        {
+            Compte compte = TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte);
+            string typeTransansaction = transaction.TypeTransaction;
+            double montant = 0; // (transaction as TransactionMonétaire).Montant;
+            if (transaction is TransactionMonétaire)
+            {
+                montant = (transaction as TransactionMonétaire).Montant;
+            }
+            switch (typeTransansaction)
+            {
+                case "D":
+                    compte.Déposer(montant);
+                    break;
+                case "DGA":
+                    compte.Déposer(montant);
+                    break;
+                case "R":
+                    compte.RetirerComptoir(montant);
+                    break;
+                case "RGA":
+                    compte.RetirerGuichetAutomatique(montant);
+                    break;
+                case "C":
+                    compte.RetirerChèque(montant);
+                    break;
+                case "VM":
+                    //compte.Afficher();
+                    break;
+                case "I":
+                    compte.RendreInactif();
+                    break;
+                case "A":
+                    compte.RendreActif();
+                    break;
+                case "S":
+                    compte.AfficherSolde();
+                   // compte.Afficher(); // Test 
+                    break;
+                default:
+                    break;
+            }
         }
+
+        /// <summary>
+        /// Retourner le solde global d'un client
+        /// </summary>
+        /// <param name="numéroClient"></param>
+        /// <returns></returns>
+        public double SoldeTotal(string numéroClient)
+        {
+            return TrouverLesComptes(numéroClient).Sum(c => c.SoldeCompte);
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
+        }
+         
         #endregion
 
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 /// <INF731-TP2>
 ///     <auteurs>
 ///         <auteur> Amadou Yaya Kane <email> Amadou.Yaya.Kane@USherbrooke.ca </email></auteur>
@@ -15,6 +16,8 @@ using System.Threading.Tasks;
 ///     </summary>
 /// </INF731-TP2>
 
+=======
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
 namespace INF731_TP2
 {
     interface IOpérateurTransaction

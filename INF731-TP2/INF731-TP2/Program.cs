@@ -148,6 +148,7 @@ namespace INF731_TP2
                 }
             }
 
+<<<<<<< HEAD
 
 
             // -------------------------------------------
@@ -171,6 +172,25 @@ namespace INF731_TP2
                 fichierComptes = Console.ReadLine();
                 if (String.IsNullOrEmpty(fichierClients))
                     Environment.Exit(0);
+=======
+            Console.WriteLine();
+            Console.WriteLine("Liste des comptes");
+            Console.WriteLine();
+           
+            string FichierComptes = "ListeDeComptes.txt";
+            foreach (Compte compte in (GestionFichiers.loadComptes(FichierComptes)))
+                if (Tangerine.AjouterCompte(compte))
+                    Console.WriteLine("Compte {0} Ajouté", compte);
+                else
+                    Console.WriteLine("ERREUR: Compte {0} existe déjà", compte);
+
+            foreach (Compte c in Tangerine.ListeDeComptes)
+            {
+                //c.Afficher();
+                //c.Déposer(100000);
+                //Console.WriteLine("Solde Apres le depot de 500: ");
+               // c.Afficher();
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
             }
 
             AfficherSousTitre("Chargement des comptes");
@@ -186,6 +206,7 @@ namespace INF731_TP2
                     Console.WriteLine();
                 }
 
+<<<<<<< HEAD
 
             // -------------------------------------------
             // Chargement de la liste de transactions
@@ -206,6 +227,50 @@ namespace INF731_TP2
                 if (String.IsNullOrEmpty(fichierClients))
                     Environment.Exit(0);
             }
+=======
+            string FichierTransaction = "Transactions.txt";
+            foreach (Transaction transaction in (GestionFichiers.ChargerTransactions(FichierTransaction)))
+                Tangerine.AjouterTransaction(transaction);
+            foreach (Transaction transaction in Tangerine.ListeTransactions)
+            {
+                transaction.Afficher();
+                Tangerine.ExecuterTransaction(transaction);
+                //Tangerine.TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte).Afficher();
+            }
+            //string FichierTransaction = "ListeDeTransactions.txt";
+            //foreach (Transaction transaction in (GestionFichiers.ChargerTransactions(FichierTransaction)))
+            //    Tangerine.AjouterTransaction(transaction);
+            //foreach (Transaction transaction in Tangerine.ListeTransactions)
+            //{
+            //    transaction.Afficher();
+            //}
+
+            GestionFichiers.ProduireJournalTransaction(Tangerine,FichierTransaction);
+            Console.WriteLine();
+            Console.WriteLine("Résultats après Transactions");
+            Console.WriteLine();
+
+            
+            //foreach (Client c in Tangerine.ListeDeClients)
+            //{
+            //    //c.
+            //    Console.WriteLine(Tangerine.SoldeTotal((c as ClientIndividuel).NuméroClient));
+            //    foreach (var v in Tangerine.TrouverLesComptes(c.NuméroClient))
+            //        Console.WriteLine(v.ToString());
+            //}
+            //Tangerine.ListeDeClients.FindAll(c => c.NuméroClient)
+            //Tangerine.ExecuterTransaction()
+            // GestionTransactions.EffectuerTransaction(Tangerine);
+           // }
+
+            Console.WriteLine();
+            Console.WriteLine("Résultats après Transactions");
+            Console.WriteLine();
+            //GestionTransactions.EffectuerTransaction(Tangerine);
+            //// Test Exception CompteTypeInvalide
+            //string[] numeroclient = { "123", "123" };
+            //Compte testCompte = new CompteChèque(numeroclient, "something","individuel","123456",'A',300.00);
+>>>>>>> e7f93f33f6840b3db8458da4610c4ddd215026c9
 
             AfficherSousTitre("Chargement des transactions");
             foreach (Transaction transaction in (GestionFichiers.ChargerTransactions(fichierTransactions)))
