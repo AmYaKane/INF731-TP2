@@ -14,40 +14,6 @@ using System.Text;
 ///         Classe contrôlant l'accès aux fichiers et la gestion de la structure des données lues et écrites.   
 ///     </summary>
 ///     
-///      <méthodes>
-///         <méthode> 
-///             <Nom> ParseCSV(string ligne) </Nom>
-///             <Description> Lit une ligne csv et créer un Array de string </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> loadClients(String cheminFichier) </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///      </méthodes>
 /// </INF731-TP2>
 
 namespace INF731_TP2
@@ -513,13 +479,19 @@ namespace INF731_TP2
         ///     Affiche le résultat des transactions
         /// </summary>
         /// <returns></returns>
-        public virtual string FormatterCompte()
+        public virtual string FormatterOutputTransaction()
         {
             return GestionMessages.NUMÉRO_CLIENT + NuméroClients[0] + Environment.NewLine +
                    GestionMessages.NUMÉRO_COMPTE + NuméroCompte + Environment.NewLine +
                    GestionMessages.STATUT_COMPTE + StatutCompte + Environment.NewLine +
                    GestionMessages.SOLDE_COMTE + SoldeCompte;
         }
+
+        /// <summary>
+        ///     Affiche les informations de compte en format CSV
+        /// </summary>
+        /// <returns></returns>
+        public abstract string FormatterOutputJournalCompte();        
 
         /// <summary>
         ///     TODO implement by AYK

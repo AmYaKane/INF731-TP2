@@ -12,16 +12,6 @@ using System.Text;
 ///         Classe définissant les clients de la banque.   
 ///     </summary>
 ///     
-///     <méthodes>
-///         <méthode> 
-///             <Nom> Afficher() </Nom>
-///             <Description> Affiche NuméroClient via ToString() </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> ToString() </Nom>
-///             <Description> Surcharge ToString pour afficher les propriétés du client </Description>
-///         </méthode>
-///     </méthodes>
 /// </INF731-TP2>
 
 namespace INF731_TP2
@@ -52,7 +42,7 @@ namespace INF731_TP2
 
 
         /// <summary>
-        /// Affiche numéro du client
+        ///     Affiche numéro du client
         /// </summary>
         public virtual void Afficher()
         {
@@ -60,13 +50,21 @@ namespace INF731_TP2
         }
 
         /// <summary>
-        /// Surcharge ToString pour afficher les propriétés du client
+        ///     Surcharge ToString pour afficher les propriétés du client
         /// </summary>
         /// <returns> NuméroClient " - " </returns>
         public override string ToString()
         {            
             return NuméroClient + " - ";
         }
+
+        /// <summary>
+        ///     Affiche les informations de client en format CSV
+        /// </summary>
+        /// <returns></returns>
+        public abstract string FormatterOutputJournalClient();
+
+
         #endregion
     }
 }
