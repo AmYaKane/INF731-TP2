@@ -12,40 +12,6 @@ using System.Text;
 ///         Classe définissant les comptes de type Flexible de la banque.
 ///     </summary>
 ///     
-///     <méthodes>
-///         <méthode> 
-///             <Nom> ParseCSV(string ligne) </Nom>
-///             <Description> Lit une ligne csv et créer un Array de string </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> loadClients(String cheminFichier) </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///     </méthodes>
 /// </INF731-TP2>
 
 namespace INF731_TP2
@@ -278,7 +244,26 @@ namespace INF731_TP2
             base.Afficher();
             Console.WriteLine(", Mode de Facturation: " + ModeFacturation + ", Montant Marge: " + MontantMarge + ", Solde Marge: " + SoldeMarge + ", Solde Plus Bas: " + SoldePlusBas);
         }
-		
+
+        /// <summary>
+        ///     Affiche les informations de compte en format CSV
+        /// </summary>
+        /// <returns></returns>
+        public override string FormatterOutputJournalCompte()
+        {
+            string output = "";
+            switch (CaractéristiqueDeCompte)
+            {
+                case INDIVIDUEL:
+                    output = NuméroClients[0] + ';' + TypeDeCompte + ';' + CaractéristiqueDeCompte + ';' + ModeFacturation + ';' + NuméroCompte + ';' + StatutCompte + ';' + SoldeCompte + ';' + MontantMarge + ';' + SoldeMarge;
+                    break;
+                case FLEXIBLE:
+                    output = NuméroClients[0] + ';' + TypeDeCompte + ';' + CaractéristiqueDeCompte + ';' + NuméroClients[1] + ';' + ModeFacturation + ';' + NuméroCompte + ';' + StatutCompte + ';' + SoldeCompte + ';' + MontantMarge + ';' + SoldeMarge;
+                    break;
+            }
+            return output;
+        }
+
         #endregion
     }
 }

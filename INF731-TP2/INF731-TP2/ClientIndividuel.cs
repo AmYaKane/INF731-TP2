@@ -12,12 +12,6 @@ using System.Text;
 ///         Classe définissant un client individuel de la banque   
 ///     </summary>
 ///     
-///     <méthodes>
-///         <méthode> 
-///             <Nom> Afficher() </Nom>
-///             <Description> Afficher les informations du client a savoir: le numero,le nom et prenom du client </Description>
-///         </méthode>
-///     </méthodes>
 /// </INF731-TP2>
 
 namespace INF731_TP2
@@ -37,11 +31,14 @@ namespace INF731_TP2
         #region // Déclaration des constructeurs de class
 
         /// <summary>
-        /// Declaration du constructeur de la classe 
+        ///     Declaration du constructeur de la classe 
         /// </summary>
-        /// <param name="numéroClient"></param>
-        /// <param name="nom"></param>
-        /// <param name="prénom"></param>
+        /// <params>
+        ///     <param name="numéroClient"></param>
+        ///     <param name="nom"></param>
+        ///     <param name="prénom"></param>
+        /// </params>
+        /// <base> numéroClient </base>
 
         public ClientIndividuel(string numéroClient, string nom, string prénom)
             : base(numéroClient)
@@ -56,12 +53,21 @@ namespace INF731_TP2
         #region // Déclaration des méthodes
      
         /// <summary>
-        /// Afficher les informations du client a savoir: le numero,le nom et prenom du client
+        ///     Afficher les informations du client a savoir: le numero,le nom et prenom du client
         /// </summary>
         public override void Afficher()
         {
             base.Afficher();
             Console.WriteLine(NomClient + ", " + PrénomClient);
+        }
+
+        /// <summary>
+        ///     Affiche les informations de client en format CSV
+        /// </summary>
+        /// <returns></returns>
+        public override string FormatterOutputJournalClient()
+        {
+            return NuméroClient + ';' + NomClient + ';' + PrénomClient;
         }
 
         #endregion

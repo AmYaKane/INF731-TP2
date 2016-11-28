@@ -1,2 +1,224 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="INF731_TP2.Banque">
+    <Position X="3.75" Y="1.25" Width="1.5" />
+    <AssociationLine Name="ListeDeClients" Type="INF731_TP2.Client" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="2.375" />
+        <Point X="6.5" Y="2.375" />
+        <Point X="6.5" Y="2.462" />
+        <Point X="7.75" Y="2.462" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.309" Y="0.091" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ListeDeComptes" Type="INF731_TP2.Compte" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.75" Y="2.562" />
+        <Point X="2.5" Y="2.562" />
+        <Point X="2.5" Y="7.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.241" Y="5.294" Height="0.182" Width="1.383" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ListeTransactions" Type="INF731_TP2.Transaction" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="2.75" />
+        <Point X="6.75" Y="2.75" />
+        <Point X="6.75" Y="5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.18" Y="1.957" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAMAAAAAgAAAAAAAAEAAAAAAAAIQAQBEAgAAACAAAA=</HashCode>
+      <FileName>Banque.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ListeDeClients" />
+      <Property Name="ListeDeComptes" />
+      <Property Name="ListeTransactions" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="INF731_TP2.Client">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAEAAAAQAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.ClientIndividuel" Collapsed="true">
+    <Position X="9.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAIAAAAAAAAAAAAQAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>ClientIndividuel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.TypeCompteInvalideException">
+    <Position X="5.5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.CaractéristiqueCompteInvalideException">
+    <Position X="2.5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.StatutCompteInvalideException">
+    <Position X="2.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.MontantNegatifException">
+    <Position X="4" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.MontantNotMultipleValideException">
+    <Position X="2.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.MontantRetraitLimitExceedException">
+    <Position X="4" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.TransactionTypeDeCompteInvalideException">
+    <Position X="4" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.Compte" BaseTypeListCollapsed="true">
+    <Position X="1" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KBJsEAgFBQBlFgWGCBAAQoAIAAACIBAJAEATAAAOAAk=</HashCode>
+      <FileName>Compte.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="INF731_TP2.CompteChèque">
+    <Position X="2.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAACAAAAAQAEAACACAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>CompteChèque.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.CompteÉpargne">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAABAACAAAAAQAAAACACAAAIAgAAAAIAAAg=</HashCode>
+      <FileName>CompteÉpargne.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.ModeFacturationInvalide">
+    <Position X="4.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CompteFlexible.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.CompteFlexible">
+    <Position X="4.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEgAAQAKJBAACoAAAAQAAAAKACAAAJAAAAAAAABAA=</HashCode>
+      <FileName>CompteFlexible.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.listeClientsVide" Collapsed="true">
+    <Position X="10.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GestionFichiers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.listeComptesVide" Collapsed="true">
+    <Position X="10.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GestionFichiers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.TransactionLenghtInvalide" Collapsed="true">
+    <Position X="10.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GestionFichiers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.GestionFichiers">
+    <Position X="9" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAgGAAQAQAACQAAAABAABMIAAAAAAACAkACAAACwIE=</HashCode>
+      <FileName>GestionFichiers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.GestionMessages">
+    <Position X="7.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAAEEAAIASAABAAhAgAAAAAAAEAAAAAAAE=</HashCode>
+      <FileName>GestionMessages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.Program">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAACAAAAAAAAAAAAAAAEABAAAAEA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.Transaction">
+    <Position X="6" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAQAAAEAAAAQAAAAAAAAAAAAEAAAAAAABA=</HashCode>
+      <FileName>Transaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.TransactionMonétaire">
+    <Position X="7.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAgAAQAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>TransactionMonétaire.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="INF731_TP2.TransactionNonMonétaire">
+    <Position X="7.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>TransactionNonMonétaire.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="INF731_TP2.ICalculateurIntêrét" Collapsed="true">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>ICalculateurIntêrét.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="INF731_TP2.IOpérateurTransaction" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>IOpérateurTransaction.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

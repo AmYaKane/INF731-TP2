@@ -17,41 +17,6 @@ using System.ComponentModel;
 ///     <summary>
 ///         Classe contrôlant l'accès aux fichiers et la gestion de la structure des données lues et écrites.   
 ///     </summary>
-///     
-///      <méthodes>
-///         <méthode> 
-///             <Nom> ParseCSV(string ligne) </Nom>
-///             <Description> Lit une ligne csv et créer un Array de string </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> loadClients(String cheminFichier) </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///      </méthodes>
 /// </INF731-TP2>
 
 namespace INF731_TP2
@@ -138,12 +103,12 @@ namespace INF731_TP2
         /// </summary>
         /// <param name="cheminFichier"></param>
         /// <returns></returns>
-        public static List<Client> ChargerClients(String cheminFichier)
+        public static List<Client> ChargerClients(String nomFichier)
         {
             string[] attributs;
             List<Client> listeClients = new List<Client>();
 
-            foreach (var Ligne in File.ReadLines(CHEMIN + cheminFichier, Encoding.UTF7).Where(Ligne => Ligne != ""))
+            foreach (var Ligne in File.ReadLines(CHEMIN + nomFichier, Encoding.UTF7).Where(Ligne => Ligne != ""))
             {
                 attributs = ParseCSV(Ligne);
                 listeClients.Add(new ClientIndividuel(attributs[0], attributs[1], attributs[2]));
@@ -221,12 +186,12 @@ namespace INF731_TP2
         /// </summary>
         /// <param name="cheminFichier"></param>
         /// <returns></returns>
-        public static List<Compte> ChargerComptes(String cheminFichier)
+        public static List<Compte> ChargerComptes(String nomFichier)
         {
             string[] attributs;
             List<Compte> listeComptes = new List<Compte>();
 
-            foreach (var Ligne in File.ReadLines(CHEMIN + cheminFichier, Encoding.UTF7).Where(Ligne => Ligne != ""))
+            foreach (var Ligne in File.ReadLines(CHEMIN + nomFichier, Encoding.UTF7).Where(Ligne => Ligne != ""))
             {
                 attributs = ParseCSV(Ligne);
                 listeComptes.Add(CréerCompte(attributs));
@@ -265,16 +230,28 @@ namespace INF731_TP2
 
             return listeTransactions;
         }
-        
+
         /// <summary>
         /// Ecrire le journal de Client
         /// </summary>
         /// <param name="cheminFichier"></param>
         /// <param name="nomFichier"></param>
-        static void EcrireJournalClient(String nomFichier)
+        static void EcrireJournalClient(Banque banque, String nomFichier)
         {
-            File.AppendAllText(CHEMIN + nomFichier, "sometext");  // Write Text and close file (similar to Console.WriteLine on the logic)
-            // TODO implement here
+            try
+            {
+                StreamWriter cw = new StreamWriter(CHEMIN + nomFichier);
+
+                foreach (Client client in banque.ListeDeClients)
+                {
+                    cw.WriteLine((client as ClientIndividuel).FormatterOutputJournalClient());
+                }
+            }
+            catch
+            {
+
+            }
+            
         }
 
         /// <summary>
@@ -282,10 +259,32 @@ namespace INF731_TP2
         /// </summary>
         /// <param name="cheminFichier"></param>    
         /// <param name="nomFichier"></param>
-        static void EcrireJournalCompte(String cheminFichier)
+        static void EcrireJournalCompte(Banque banque, String nomFichier)
         {
-            File.AppendAllText(CHEMIN + cheminFichier, "sometext");  // Write Text and close file (similar to Console.WriteLine on the logic)
-            // TODO implement here
+            try
+            {
+                StreamWriter cw = new StreamWriter(CHEMIN + nomFichier);
+
+                foreach (Compte compte in banque.ListeDeComptes)
+                {
+                    switch (compte.TypeDeCompte)
+                    {
+                        case Compte.CHÈQUE:
+                            cw.WriteLine((compte as CompteChèque).FormatterOutputJournalCompte());
+                            break;
+                        case Compte.ÉPARGNE:
+                            cw.WriteLine((compte as CompteÉpargne).FormatterOutputJournalCompte());
+                            break;
+                        case Compte.FLEXIBLE:
+                            cw.WriteLine((compte as CompteFlexible).FormatterOutputJournalCompte());
+                            break;
+                    }
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         /// <summary>
@@ -293,12 +292,12 @@ namespace INF731_TP2
         /// </summary>
         /// <param name="banque"></param>
         /// <param name="cheminFichier"></param>
-        public static void ProduireJournalTransaction(Banque banque, string cheminFichier)
+        public static void ProduireJournalTransaction(Banque banque, string nomFichier)
         {
             try
             {
-                List<Transaction> list = new List<Transaction>(ChargerTransactions(cheminFichier));
-                StreamWriter tw = new StreamWriter(CHEMIN + JOURNAL + cheminFichier);
+                List<Transaction> list = new List<Transaction>(ChargerTransactions(nomFichier));
+                StreamWriter tw = new StreamWriter(CHEMIN + JOURNAL + nomFichier);
 
                 foreach (var s in list)
                 {
@@ -314,7 +313,7 @@ namespace INF731_TP2
                             tw.WriteLine(transactions[s.TypeTransaction]); //s."Résultat aprés transaction"
                         tw.WriteLine(ligneTiret);
                         tw.WriteLine();
-                        tw.WriteLine(banque.TrouverCompte(s.NuméroClient, s.NuméroCompte).FormatterCompte());
+                        tw.WriteLine(banque.TrouverCompte(s.NuméroClient, s.NuméroCompte).FormatterOutputTransaction());
                         tw.WriteLine();
                     }
                     catch

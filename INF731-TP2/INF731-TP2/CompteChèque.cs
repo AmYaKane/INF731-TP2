@@ -14,41 +14,6 @@ using System.Text;
 ///     <summary>
 ///         Classe définissant les comptes de type Chèque de la banque.
 ///     </summary>
-///     
-///     <méthodes>
-///         <méthode> 
-///             <Nom> ParseCSV(string ligne) </Nom>
-///             <Description> Lit une ligne csv et créer un Array de string </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> loadClients(String cheminFichier) </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///     </méthodes>
 /// </INF731-TP2>
 
 namespace INF731_TP2
@@ -156,6 +121,25 @@ namespace INF731_TP2
             base.Afficher();
             Console.WriteLine();
         }
+
+        /// <summary>
+        ///     Affiche les informations de compte en format CSV
+        /// </summary>
+        /// <returns></returns>
+        public override string FormatterOutputJournalCompte()     
+        {
+            string output="";
+            switch (CaractéristiqueDeCompte)
+            {
+                case INDIVIDUEL:
+                    output = NuméroClients[0] + ';' + TypeDeCompte + ';' + CaractéristiqueDeCompte + ';' + NuméroCompte + ';' + StatutCompte + ';' + SoldeCompte;
+                    break;
+                case FLEXIBLE:
+                    output = NuméroClients[0] + ';' + TypeDeCompte + ';' + CaractéristiqueDeCompte + ';' + NuméroClients[1] + ';' + NuméroCompte + ';' + StatutCompte + ';' + SoldeCompte;
+                    break;
+            }
+            return output;
+        }   
 
         #endregion
     }

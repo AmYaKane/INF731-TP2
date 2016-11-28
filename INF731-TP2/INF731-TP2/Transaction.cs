@@ -13,41 +13,8 @@ using System.Threading.Tasks;
 ///     <summary>
 ///         Classe contrôlant l'accès aux fichiers et la gestion de la structure des données lues et écrites.   
 ///     </summary>
-///     
-///      <méthodes>
-///         <méthode> 
-///             <Nom> ParseCSV(string ligne) </Nom>
-///             <Description> Lit une ligne csv et créer un Array de string </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> loadClients(String cheminFichier) </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///         <méthode>
-///             <Nom> </Nom>
-///             <Description> </Description>
-///         </méthode>
-///      </méthodes>
+/// </INF731-TP2>
+
 
 namespace INF731_TP2
 {
