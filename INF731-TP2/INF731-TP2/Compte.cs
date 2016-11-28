@@ -377,7 +377,7 @@ namespace INF731_TP2
                         return true;
                     }
                     else
-                        throw new MontantRetraitLimitExceedException();
+                         throw new MontantRetraitLimitExceedException();
                 }
                 else
                     throw new MontantNegatifException();

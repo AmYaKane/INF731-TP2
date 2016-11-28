@@ -36,14 +36,14 @@ namespace INF731_TP2
         public static string ligneTiret = new string('-', 70);
         public static string ligneÉtoile = new string('*', 70);
         public static string ligneExclamation = new string('!', 72);
+        public static string fichierException = "ListeDesExceptions.txt";
 
         public const string CHÈQUE = "chèque";
         public const string FLEXIBLE = "flexible";
         public const string ÉPARGNE = "épargne";
         public const string CONJOINT = "conjoint";
         public const string INDIVIDUEL = "individuel";
-
-        public static readonly Dictionary<string, string> transactions = new Dictionary<string, string>
+        static readonly Dictionary<string, string> transactions = new Dictionary<string, string>
         {
             { "D", "Dépot au comptoir d'un montant de : {0}" },
             { "DGA", "Dépot au guichet d'un montant de : {0}" },
@@ -303,72 +303,75 @@ namespace INF731_TP2
                 {
                     try
                     {
-                        //tw.WriteLine(s);
                         banque.ExecuterTransaction(s);
-                        //tw.WriteLine();
                         tw.WriteLine(ligneTiret);
                         if (s is TransactionMonétaire)
-                            tw.WriteLine(transactions[s.TypeTransaction], (s as TransactionMonétaire).Montant);
+                            tw.WriteLine(transactions[s.TypeTransaction], (s as TransactionMonétaire).Montant); 
                         else
-                            tw.WriteLine(transactions[s.TypeTransaction]); //s."Résultat aprés transaction"
+                            tw.WriteLine(transactions[s.TypeTransaction]); 
+
                         tw.WriteLine(ligneTiret);
                         tw.WriteLine();
                         tw.WriteLine(banque.TrouverCompte(s.NuméroClient, s.NuméroCompte).FormatterOutputTransaction());
                         tw.WriteLine();
                     }
-                    catch
+                    catch (Exception e)
                     {
-                        tw.WriteLine(s);
-                        tw.WriteLine("Erreur");
+                        tw.WriteLine(e);                       
                     }
-
                 }
 
                 tw.WriteLine();
+                tw.WriteLine(ligneTiret);
+                tw.WriteLine(GestionMessages.BILAN_COMPTE);
+                tw.WriteLine(ligneTiret);
+                tw.WriteLine();
                 foreach (Compte c in banque.ListeDeComptes)
                 {
-                    tw.WriteLine(c.NuméroClients[0] + " : " + c.NuméroCompte + " : " + c.SoldeCompte);
+                    c.AjouterIntérêts();
                     tw.WriteLine();
+                    tw.WriteLine(GestionMessages.NUMÉRO_COMPTE + c.NuméroClients[0]);
+                    tw.WriteLine(GestionMessages.NUMÉRO_COMPTE + c.NuméroCompte);
+                    tw.WriteLine(GestionMessages.SOLDE_COMTE + c.SoldeCompte);
+                    tw.WriteLine();
+                }
 
-                }                   
-
+                tw.WriteLine();
+                tw.WriteLine(ligneTiret);
+                tw.WriteLine(GestionMessages.BILAN_CLIENT);
+                tw.WriteLine(ligneTiret);
                 tw.WriteLine();
                 foreach (Compte compte in banque.ListeDeComptes)
                 {
-                    tw.WriteLine(compte.NuméroClients[0] + " : ");                
-                    tw.Write(banque.SoldeTotal(compte.NuméroClients[0]));
                     tw.WriteLine();
-                }                    
-
+                    tw.WriteLine(GestionMessages.NUMÉRO_CLIENT + compte.NuméroClients[0]);                
+                    tw.Write(GestionMessages.SOLDE_GLOBAL + banque.SoldeTotal(compte.NuméroClients[0]));
+                    tw.WriteLine();
+                }   
                 tw.Close();               
             }
-            catch
+            catch (Exception e)
             {
-                // TODO implement by AYK
-
-            }
-
+                Console.WriteLine(e);               
+            }           
         }
 
-        /// <summary>
-        /// TODO implement by AYK 
-        /// </summary>
-        /// <param name="compte"></param>
-        /// <returns></returns>
-        public static string FormatterRésultatTransaction(Compte compte)
+       /// <summary>
+       /// La liste des exeptions du programme
+       /// </summary>
+       /// <param name="banque"></param>
+        public static void ProduireListeDesExceptions(Banque banque)
         {
-            string unCompte = "";
+            StreamWriter tw = new StreamWriter(CHEMIN + JOURNAL + fichierException);
 
-            if (compte is CompteChèque)
-                unCompte = compte.ToString();
-            if (compte is CompteFlexible)
-                unCompte = compte.ToString();
-            if (compte is CompteÉpargne)
-                unCompte = compte.ToString();
-
-            return unCompte;
+            foreach (Exception e in banque.ListeExceptions)
+            {
+                tw.WriteLine(e);
+                tw.WriteLine();
+            }
+            tw.Close();
         }
-       
+      
         #endregion
     }
 }

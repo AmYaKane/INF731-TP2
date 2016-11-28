@@ -22,7 +22,21 @@ namespace INF731_TP2
     #endregion
     public class Transaction
     {
-    
+        #region // Déclaration des attributs
+        readonly Dictionary<string, string> typeTransaction = new Dictionary<string, string>
+        {
+            { "D", "Dépot au comptoir d'un montant de : {0}" },
+            { "DGA", "Dépot au guichet d'un montant de : {0}" },
+            { "R", "Retrait au comptoir d'un montant de : {0}" },
+            { "RGA", "Retrait au guichet d'un montant de : {0}" },
+            { "C", "Tirer un chéque d'un montant de : {0}" },
+            { "VM", "Versement sur la marge d'un montant de : {0}" },
+            { "I", "Rendre inactif le compte" },
+            { "A", "Rendre actif le compte" },
+            { "S", "Obtenir le solde" }
+        };
+        #endregion
+
         #region // Déclaration des propriétés
 
         public string TypeTransaction { get; private set; }

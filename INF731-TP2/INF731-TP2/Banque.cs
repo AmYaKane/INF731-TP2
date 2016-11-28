@@ -29,6 +29,8 @@ namespace INF731_TP2
         public List<Client> ListeDeClients { get; set; } // Propriété automatique
         public List<Compte> ListeDeComptes { get; set; } // Propriété automatique
         public List<Transaction> ListeTransactions { get; set; } // Propriété automatique
+        public List<Exception> ListeExceptions { get; set; }
+        string [] listetypeTransaction = new string [] {"D", "DGA", "R", "RGA", "C", "VM", "I", "A", "S"};
         #endregion
 
 
@@ -55,6 +57,7 @@ namespace INF731_TP2
             ListeDeClients = new List<Client>();
             ListeDeComptes = new List<Compte>();
             ListeTransactions = new List<Transaction>();
+            ListeExceptions = new List<Exception>();
         }
 
         #endregion
@@ -123,44 +126,53 @@ namespace INF731_TP2
         /// <param name="transaction"></param>
         public void ExecuterTransaction(Transaction transaction)
         {
-            Compte compte = TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte);
-            string typeTransansaction = transaction.TypeTransaction;
-            double montant = 0;
-            if (transaction is TransactionMonétaire)
+            try
             {
-                montant = (transaction as TransactionMonétaire).Montant;
+                ValiderTransaction(transaction);
+                Compte compte = TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte);
+                string typeTransansaction = transaction.TypeTransaction;
+                double montant = 0;
+                if (transaction is TransactionMonétaire)
+                {
+                    montant = (transaction as TransactionMonétaire).Montant;
+                }
+
+                 switch (typeTransansaction)
+                    {
+                        case "D":
+                            compte.Déposer(montant);
+                            break;
+                        case "DGA":
+                            compte.DéposerGuichetAutomatique(montant);
+                            break;
+                        case "R":
+                            compte.Retirer(montant);
+                            break;
+                        case "RGA":
+                            compte.RetirerGuichetAutomatique(montant);
+                            break;
+                        case "C":
+                            compte.RetirerChèque(montant);
+                            break;
+                        case "VM":
+                            (compte as CompteFlexible).VirementMarge(montant);
+                            break;
+                        case "I":
+                            compte.RendreInactif();
+                            break;
+                        case "A":
+                            compte.RendreActif();
+                            break;
+                        case "S":
+                            compte.AfficherSolde();
+                            break;
+                        default:
+                            break;
+                    }
             }
-            switch (typeTransansaction)
+            catch (Exception e)
             {
-                case "D":
-                    compte.Déposer(montant);
-                    break;
-                case "DGA":
-                    compte.DéposerGuichetAutomatique(montant);
-                    break;
-                case "R":
-                    compte.Retirer(montant);
-                    break;
-                case "RGA":
-                    compte.RetirerGuichetAutomatique(montant);
-                    break;
-                case "C":
-                    compte.RetirerChèque(montant);
-                    break;
-                case "VM":
-                    (compte as CompteFlexible).VirementMarge(montant);
-                    break;
-                case "I":
-                    compte.RendreInactif();
-                    break;
-                case "A":
-                    compte.RendreActif();
-                    break;
-                case "S":
-                    compte.AfficherSolde(); 
-                    break;
-                default:
-                    break;
+                ListeExceptions.Add(e);
             }
         }
 
@@ -208,6 +220,23 @@ namespace INF731_TP2
             return ListeDeComptes.Find(compte => compte.NuméroClients[0] == numéroClient || compte.NuméroClients[1] == numéroClient); // Naviguer la liste de client?
         }
 
+        /// <summary>
+        /// Valider quelques paramètres de transactions
+        /// </summary>
+        /// <param name="transaction"></param>
+        public void ValiderTransaction(Transaction transaction)
+        {
+            if (!ListeDeClients.Select(c => c.NuméroClient).Contains(transaction.NuméroClient))
+                throw new Exception();
+            if (!ListeDeComptes.Select(c => c.NuméroCompte).Contains(transaction.NuméroCompte))
+                throw new Exception();
+            if (!((transaction as TransactionMonétaire).Montant > 0))
+                throw new Exception();
+            if (!listetypeTransaction.Contains(transaction.TypeTransaction))
+                throw new Exception();
+        }
         #endregion
+
+
     }
 }

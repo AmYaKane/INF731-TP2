@@ -214,8 +214,11 @@ namespace INF731_TP2
             foreach (Transaction transaction in Mandarine.ListeTransactions)
             {
                 transaction.Afficher();
-                Mandarine.ExecuterTransaction(transaction);
+                Mandarine.ExecuterTransaction(transaction); // ListeDeClients.txt   ListeDeComptes.txt   Janvier.txt  fichierTestCompte.txt
+                GestionFichiers.ProduireJournalTransaction(Mandarine, fichierTransactions);
             }
+
+            GestionFichiers.ProduireListeDesExceptions(Mandarine);
         }
     }
 }
