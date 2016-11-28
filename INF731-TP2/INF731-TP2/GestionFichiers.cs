@@ -78,7 +78,7 @@ namespace INF731_TP2
         public const string CONJOINT = "conjoint";
         public const string INDIVIDUEL = "individuel";
 
-        static readonly Dictionary<string, string> transactions = new Dictionary<string, string>
+        public static readonly Dictionary<string, string> transactions = new Dictionary<string, string>
         {
             { "D", "Dépot au comptoir d'un montant de : {0}" },
             { "DGA", "Dépot au guichet d'un montant de : {0}" },

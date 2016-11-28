@@ -159,7 +159,7 @@ namespace INF731_TP2
         {
             Compte compte = TrouverCompte(transaction.NuméroClient, transaction.NuméroCompte);
             string typeTransansaction = transaction.TypeTransaction;
-            double montant = 0; // (transaction as TransactionMonétaire).Montant;
+            double montant = 0;
             if (transaction is TransactionMonétaire)
             {
                 montant = (transaction as TransactionMonétaire).Montant;

@@ -55,6 +55,7 @@ namespace INF731_TP2
     #endregion
     public class Transaction
     {
+    
         #region // Déclaration des propriétés
 
         public string TypeTransaction { get; private set; }
